@@ -31,7 +31,9 @@ const BaseLink = styled('a', {
       true: {
         color: '$text_muted',
         backgroundColor: 'none',
-        pointerEvents: 'none',
+        // pointerEvents: 'none',
+        cursor: 'not-allowed',
+
         '&:hover': {
           backgroundColor: 'none'
         }
@@ -74,16 +76,24 @@ const BaseLink = styled('a', {
   }
 })
 
-export const Link = ({ onClick, href, to, children, scroll = false, ...props }) => {
+const handleClick = (e, onClick, disabled) => {
+  if (disabled) {
+    e.preventDefault()
+    return
+  }
+  onClick && onClick()
+}
+
+export const Link = ({ onClick, disabled, href, to, children, scroll = false, ...props }) => {
 
   return <NextLink
-    onClick={onClick}
     href={to || href}
     target={href ? '_blank' : '_self'}
     scroll={scroll}
     passHref
   >
-    <BaseLink {...props}>{children}</BaseLink>
+    <BaseLink
+      onClick={(e) => handleClick(e, onClick, disabled)} aria-disabled={disabled} disabled={disabled} {...props}>{children}</BaseLink>
   </NextLink>;
 };
 

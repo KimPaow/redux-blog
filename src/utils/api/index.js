@@ -7,6 +7,7 @@ export const PAGE_SIZE = 5
 export const POSTS_ENDPOINT = 'https://jsonplaceholder.typicode.com/posts'
 export const COMMENTS_ENDPOINT = 'https://jsonplaceholder.typicode.com/comments'
 
+// POSTS
 export const getPostsByPage = async ({ page, size = PAGE_SIZE }) => {
   if (!page) {
     console.warn('page not supplied to getPostsByPage - aborting fetch')
@@ -28,6 +29,18 @@ export const useGetPostsByPage = ({ page, size = PAGE_SIZE }) => {
   const endpoint = `https://jsonplaceholder.typicode.com/posts?_start=${from}&_limit=${size}`
 
   return useSWR(endpoint, fetcher)
+}
+
+// COMMENTS
+export const getCommentsByPostId = async ({ postId }) => {
+  if (!postId) {
+    console.warn('postId not supplied to getCommentsByPostId - aborting fetch')
+  }
+
+  const endpoint = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
+  const data = await fetcher(endpoint)
+
+  return { endpoint, comments: data }
 }
 
 export const useGetAllComments = () => {
