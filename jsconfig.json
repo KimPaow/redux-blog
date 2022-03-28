@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@/theme": [
+        "src/stitches/stitches.config"
+      ],
+    }
+  }
+}
