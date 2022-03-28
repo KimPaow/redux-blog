@@ -1,6 +1,6 @@
 import { styled } from '@/theme'
 import { forwardRef } from 'react';
-import { getResponsiveValues } from '@/helpers/getResponsiveValues'
+import { getResponsiveValues } from '@/utils/getResponsiveValues'
 
 const BaseStack = styled('div', {
   display: 'flex',

@@ -19,41 +19,29 @@ export const {
   },
   theme: {
     colors: {
-      text_body: "$black_alpha700",
-      text_body_inverted: "$white_alpha700",
-      text_muted: "$black_alpha400",
-      text_sand: "hsla(30, 33%, 75%, 0.7)",
-      text_sun: "hsla(47, 80%, 63%, 0.7)",
-      text_water: "hsla(223, 80%, 63%, 0.7)",
+      ...colors,
 
-      text_headline: "$text_body",
+      text_body: "$white_alpha700",
+      text_body_inverted: "$black_alpha700",
+      text_muted: "$white_alpha400",
+      text_headline: "$white_alpha900",
       text_link: "$text_body",
-      text_highlight_bg: "$text_water",
-      text_highlight_color: "$text_body_inverted",
 
-      bg_paper: "hsla(33, 13%, 86%, 1.0)",
-      bg_water: "hsla(212, 11%, 70%, 1.0)",
-      bg_woods: "hsla(95, 7%, 67%, 1.0)",
-      bg_sand: "hsla(30, 33%, 75%, 1.0)",
-      bg_sunset: "hsla(28, 62%, 58%, 1.0)",
-      bg_sun: "hsla(47, 80%, 58%, 1.0)",
-      bg_body: "$bg_woods",
+      bg_body: "#060606",
 
-      card_bg: "$bg_sunset",
+      card_bg: "$white_alpha100",
       card_border: "$white_alpha50",
 
-      primary50: "#e2f8ed",
-      primary100: "#b8eed3",
-      primary200: "#86e3b6",
-      primary300: "#3fd898",
-      primary400: "#00ce81",
-      primary500: "#00c36c",
-      primary600: "#00b360",
-      primary700: "#00a053",
-      primary800: "#008f47",
-      primary900: "#0F2B29",
-
-      ...colors
+      primary50: "$violet50",
+      primary100: "$violet100",
+      primary200: "$violet200",
+      primary300: "$violet300",
+      primary400: "$violet400",
+      primary500: "$violet500",
+      primary600: "$violet600",
+      primary700: "$violet700",
+      primary800: "$violet800",
+      primary900: "$violet900",
     },
     // margin padding
     space: {
@@ -86,9 +74,9 @@ export const {
       full: '100%'
     },
     fonts: {
-      body: 'Charter,  system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-      heading: '"Ivy Mode",  system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-      navlink: '"Ivy Mode",  system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+      body: 'Inter,  system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+      heading: 'Inter,  system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+      navlink: 'Inter,  system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
       monospace: '"JetBrains Mono", "SF Mono", Menlo, monospace, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
     },
     fontSizes: {
@@ -117,12 +105,12 @@ export const {
       h3: "$8",
       h4: "$6",
       h5: "$5",
-      preamble: "2.4rem",
-      body: "2.0rem",
+      preamble: "$4",
+      body: "$3",
       code: "1.5rem"
     },
     fontWeights: {
-      heading: 400,
+      heading: 800,
       body: 400,
       link: 400,
       monospace: 400,
@@ -130,8 +118,8 @@ export const {
       bold: 700,
     },
     lineHeights: {
-      body: '32px',
-      heading: 1.2,
+      body: 1.6,
+      heading: 1.36,
       monospace: 1.4,
       code: 1.4,
     },

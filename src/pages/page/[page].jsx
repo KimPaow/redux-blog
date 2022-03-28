@@ -5,6 +5,7 @@ import { POSTS_ENDPOINT, PAGE_SIZE, fetcher, getPostsByPage } from '@/utils/api'
 import BlogPage from '@/components/pages/blog'
 
 export default function Home({ fallback = {}, currentPage, pageCount }) {
+  console.log('currentPage: ', currentPage)
   return (
     <SWRConfig value={{ fallback }}>
       <Head>
@@ -17,8 +18,8 @@ export default function Home({ fallback = {}, currentPage, pageCount }) {
   )
 }
 
-export const getStaticProps = async () => {
-  const currentPage = 1
+export const getStaticProps = async ({ params: { page } }) => {
+  const currentPage = page
   const allPosts = await fetcher(POSTS_ENDPOINT)
   const { endpoint, postsByPage } = await getPostsByPage({ page: currentPage })
   const totalPostCount = allPosts.length
@@ -32,5 +33,17 @@ export const getStaticProps = async () => {
         [endpoint]: postsByPage
       }
     }
+  }
+}
+
+export const getStaticPaths = async () => {
+  const allPosts = await fetcher(POSTS_ENDPOINT)
+  const totalPostCount = allPosts.length
+  const pageCount = totalPostCount / PAGE_SIZE
+  const paths = Array.from({ length: pageCount - 1 }, (_, i) => ({ params: { page: (i + 2).toString() } }))
+
+  return {
+    paths,
+    fallback: false
   }
 }

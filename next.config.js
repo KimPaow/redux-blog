@@ -4,9 +4,6 @@ const nextConfig = {
   compiler: {
     swcMinify: true,
     reactRemoveProperties: true,
-    removeConsole: {
-      exclude: ['error', 'warn'],
-    },
   },
 }
 

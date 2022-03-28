@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { userPrefersDark } from "@/helpers/get-preferred-color-scheme";
-import { Window as window } from "@/helpers/server-safe-globals";
+import { userPrefersDark } from "@/utils/get-preferred-color-scheme";
+import { Window as window } from "@/utils/server-safe-globals";
 
 export const usePrefersDarkMode = () => {
   const [prefersDark, setPrefersDark] = useState(userPrefersDark);

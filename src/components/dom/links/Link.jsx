@@ -22,6 +22,33 @@ const BaseLink = styled('a', {
         color: '$text_body'
       }
     },
+    active: {
+      true: {
+        color: '$text_body'
+      }
+    },
+    disabled: {
+      true: {
+        color: '$text_muted',
+        backgroundColor: 'none',
+        pointerEvents: 'none',
+        '&:hover': {
+          backgroundColor: 'none'
+        }
+      }
+    },
+    pagination: {
+      true: {
+        padding: '$2',
+        borderRadius: '$md',
+        color: '$text_muted',
+
+        '&:hover': {
+          backgroundColor: '$primary500',
+          color: '$text_body'
+        }
+      }
+    },
     underline: {
       true: {
         lineHeight: '$body',
@@ -43,7 +70,7 @@ const BaseLink = styled('a', {
           }
         }
       }
-    }
+    },
   }
 })
 

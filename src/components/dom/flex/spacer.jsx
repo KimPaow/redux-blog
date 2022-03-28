@@ -1,4 +1,4 @@
-import getResponsiveValues from '@/helpers/getResponsiveValues';
+import getResponsiveValues from '@/utils/getResponsiveValues';
 import { styled } from '@/theme'
 
 const BaseSpacer = styled('span', {

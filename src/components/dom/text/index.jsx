@@ -121,7 +121,6 @@ const BaseText = styled('span', {
     },
     h1: {
       true: {
-        textTransform: 'uppercase',
         fontSize: '$h1',
         fontFamily: '$heading',
         fontWeight: '$heading',
@@ -130,7 +129,6 @@ const BaseText = styled('span', {
     },
     h2: {
       true: {
-        textTransform: 'uppercase',
         fontSize: '$h2',
         fontFamily: '$heading',
         fontWeight: '$heading',
@@ -139,7 +137,6 @@ const BaseText = styled('span', {
     },
     h3: {
       true: {
-        textTransform: 'uppercase',
         fontSize: '$h3',
         fontFamily: '$heading',
         fontWeight: '$heading',
@@ -148,7 +145,6 @@ const BaseText = styled('span', {
     },
     h4: {
       true: {
-        textTransform: 'uppercase',
         fontSize: '$h4',
         fontFamily: '$heading',
         fontWeight: '$heading',
@@ -157,7 +153,6 @@ const BaseText = styled('span', {
     },
     h5: {
       true: {
-        textTransform: 'uppercase',
         fontSize: '$h5',
         fontFamily: '$heading',
         fontWeight: '$heading',
@@ -167,7 +162,7 @@ const BaseText = styled('span', {
   }
 })
 
-export const Text = ({ h1, h2, h3, h4, h5, h6, body, quote, css, ...props }) => {
+export const Text = ({ h1, h2, h3, h4, h5, h6, body, quote, ...props }) => {
   if (!props.children) {
     return null
   };
@@ -196,7 +191,7 @@ export const Text = ({ h1, h2, h3, h4, h5, h6, body, quote, css, ...props }) => 
     }
   }
 
-  return <BaseText as={props.as || as} h1={h1} h2={h2} css={css} {..._props} {...props} />;
+  return <BaseText as={props.as || as} {..._props} {...props} />;
 };
 
 export default Text;

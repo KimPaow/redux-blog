@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Window as window } from "@/helpers/server-safe-globals";
+import { Window as window } from "@/utils/server-safe-globals";
 
 export const useEventListener = (eventName, handler, element = window) => {
   // Create a ref that stores handler

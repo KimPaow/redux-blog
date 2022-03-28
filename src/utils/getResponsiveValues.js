@@ -1,4 +1,4 @@
-import { config } from 'stitches.config'
+import { config } from '@/theme'
 
 /**
  * @param {string} key style key to apply responsive values to 

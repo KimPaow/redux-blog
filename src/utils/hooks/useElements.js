@@ -1,6 +1,6 @@
 import each from "lodash/each";
 import { useEffect } from "react";
-import { Document as document } from "@/helpers/server-safe-globals";
+import { Document as document } from "@/utils/server-safe-globals";
 
 /**
  * Pass an object with selectors and this hooks returns any matching DOM elements

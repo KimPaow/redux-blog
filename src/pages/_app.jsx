@@ -1,6 +1,12 @@
 import { darkTheme, lightTheme } from '@/theme';
-import { usePrefersDarkMode } from "@/helpers/hooks/usePrefersDarkMode"
+import { usePrefersDarkMode } from "@/utils/hooks/usePrefersDarkMode"
 import { globalStyles } from "@/stitches/globalStyles"
+import { SWRConfig } from 'swr'
+import { fetcher } from '@/utils/api';
+
+const swrConfig = {
+  fetcher
+}
 
 function MyApp({ Component, pageProps }) {
   const prefersDarkMode = usePrefersDarkMode();
@@ -9,7 +15,9 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <div data-app className={prefersDarkMode ? darkTheme : lightTheme}>
-      <Component {...pageProps} />
+      <SWRConfig value={swrConfig}>
+        <Component {...pageProps} />
+      </SWRConfig>
     </div>
   )
 }

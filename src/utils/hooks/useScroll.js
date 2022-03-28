@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import useSize from '@react-hook/size'
-import { useEventListener } from "@/helpers/hooks/useEventListener";
-import { Document as document, Window as window } from "@/helpers/server-safe-globals";
-import useStore from '@/helpers/store'
-import lerp from '@/helpers/lerp'
+import { useEventListener } from "@/utils/hooks/useEventListener";
+import { Document as document, Window as window } from "@/utils/server-safe-globals";
+import useStore from '@/utils/store'
+import lerp from '@/utils/lerp'
 
 // set height of the body
 const setSize = ({ scrollable }) => {

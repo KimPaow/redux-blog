@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useProgress as useLoadingProgress } from '@react-three/drei';
-import { emitEvent, useEvent, evt } from '@/helpers/events';
+import { emitEvent, useEvent, evt } from '@/utils/events';
 
 export const useProgress = () => {
   const { progress } = useLoadingProgress()

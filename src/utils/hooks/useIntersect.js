@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { Window as window } from "@/helpers/server-safe-globals"
+import { Window as window } from "@/utils/server-safe-globals"
 
 /**
  * useIntersect hook - easily allows setting up intersection observers
