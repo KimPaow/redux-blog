@@ -13,8 +13,8 @@ From the root, follow these steps:
 
 ## Libraries used
 
-[Next.js](https://nextjs.org/)
-[Stitches](https://stitches.dev/)
-[Framer Motion](https://www.framer.com/motion/)
-[React](https://reactjs.org/)
-[Redux + Redux Toolkit](https://redux-toolkit.js.org/)
+- [Next.js](https://nextjs.org/)
+- [Stitches](https://stitches.dev/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [React](https://reactjs.org/)
+- [Redux + Redux Toolkit](https://redux-toolkit.js.org/)
