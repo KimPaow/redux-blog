@@ -7,7 +7,8 @@ import Text from '@/components/dom/text';
 import { Spacer } from '@/components/dom/flex'
 import { Link } from '@/components/dom/links';
 
-const CommentListItem = ({ name, email, body, ...props }) => {
+// eslint-disable-next-line no-unused-vars
+const CommentListItem = ({ name, email, body, postId, ...props }) => {
   return <Stack
     column
     as={motion.li}
