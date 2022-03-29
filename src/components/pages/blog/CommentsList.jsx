@@ -42,6 +42,6 @@ export const CommentsList = ({ comments = {} }) => {
       borderLeft: '1px dashed $gray500'
     }}
   >
-    {comments.comments && comments.comments?.map(c => <CommentListItem key={c.id} {...c} />)}
+    {comments && comments?.map(c => <CommentListItem key={c.id} {...c} />)}
   </Stack>
 }

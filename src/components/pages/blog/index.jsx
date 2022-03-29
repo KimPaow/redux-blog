@@ -3,9 +3,10 @@ import PageWrapper from '@/components/dom/pagewrapper'
 import Stack from "@/components/dom/flex/stack"
 import { PostListItem } from './PostListItem'
 import { Pagination } from './Pagination'
+import Search from '@/components/dom/search'
 
-export const BlogPage = ({ page, pageCount, comments }) => {
-  const { data, error } = useGetPostsByPage({ page })
+export const BlogPage = ({ page, pageCount }) => {
+  const { data, error } = useGetPostsByPage({ page, comments: true })
   // console.log('comments: ', comments)
 
   if (error) {
@@ -16,8 +17,9 @@ export const BlogPage = ({ page, pageCount, comments }) => {
 
   return (
     <PageWrapper as="main">
+      <Search />
       <Stack gap={[3, 4, 5]} column>
-        {data?.map(({ id, ...post }) => <PostListItem key={id} id={id} comments={comments ? comments[id] : undefined} {...post} />)}
+        {data?.map(({ id, ...post }) => <PostListItem key={id} id={id} {...post} />)}
       </Stack>
       <Pagination currentPage={Number(page)} pageCount={pageCount} />
     </PageWrapper>

@@ -13,7 +13,6 @@ export const PostListItem = ({ title, body, userId, id, comments, ...props }) =>
   const [showComments, setShowComments] = useState(false)
   const capitalizedTitle = capitalizeFirstLetter(title)
   const capitalizedBody = capitalizeFirstLetter(body)
-  // console.log('post comments: ', comments)
 
   return <Stack column css={{ maxWidth: '700px' }} {...props}>
     <Text h3 color="headline">{capitalizedTitle}</Text>
