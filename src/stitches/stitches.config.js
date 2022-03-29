@@ -99,7 +99,7 @@ export const {
       h4: "$6",
       h5: "$5",
       preamble: "$4",
-      body: "$3",
+      body: "1.5rem",
       code: "1.5rem"
     },
     fontWeights: {
@@ -176,9 +176,9 @@ export const {
 
 export const darkTheme = createTheme('dark-theme', {
   colors: {
-    text_body: "$white_alpha700",
+    text_body: "rgb(208, 214, 224)",
     text_body_inverted: "$black_alpha700",
-    text_muted: "$white_alpha500",
+    text_muted: "rgb(138, 143, 152)",
     text_headline: "$white_alpha900",
     text_link: "$text_body",
     text_highlight_bg: "$primary400",
@@ -188,7 +188,7 @@ export const darkTheme = createTheme('dark-theme', {
 
     card_bg: "$white_alpha100",
     card_bg_disabled: "$white_alpha100",
-    card_bg_hover: "$white_alpha200",
+    card_bg_hover: "$white_alpha100",
     card_border: "$white_alpha50",
   },
 });
@@ -207,7 +207,7 @@ export const lightTheme = createTheme('light-theme', {
 
     card_bg: "$black_alpha100",
     card_bg_disabled: "$black_alpha100",
-    card_bg_hover: "$black_alpha200",
+    card_bg_hover: "$black_alpha100",
     card_border: "$black_alpha50",
 
     // primary50: "$violet50",

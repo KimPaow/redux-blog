@@ -10,7 +10,7 @@ export const Button = styled('button', {
   textAlign: 'center',
 
   '&:focus': {
-    boxShadow: '0 0 0 2px $colors$primary400'
+    boxShadow: '0 0 0 1px $colors$primary400'
   },
 
   variants: {
@@ -22,25 +22,25 @@ export const Button = styled('button', {
     style: {
       text: {
         fontSize: '$2',
-        color: '$text_body',
+        color: '$text_muted',
         backgroundColor: 'none',
-        padding: '0',
+        padding: '$2',
 
         '&:hover': {
-          color: '$primary500',
+          color: '$text_body',
           backgroundColor: 'none',
         },
 
-        '&:focus': {
-          boxShadow: 'none'
-        },
+        // '&:focus': {
+        //   boxShadow: 'none'
+        // },
       },
       solid: {
         color: '$primaryContrast',
-        backgroundColor: '$primary600',
+        background: 'linear-gradient(92.88deg, rgb(69, 94, 181) 9.16%, rgb(86, 67, 204) 43.89%, rgb(103, 63, 215) 64.72%)',
 
         '&:hover': {
-          backgroundColor: '$primary700'
+          boxShadow: '0 0 10px rgb(86, 67, 204)'
         },
       },
     },

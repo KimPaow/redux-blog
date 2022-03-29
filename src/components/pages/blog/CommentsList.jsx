@@ -19,10 +19,10 @@ const CommentListItem = ({ name, email, body, postId, ...props }) => {
   >
     <Stack gap={3} align="center">
       <Avatar css={{ backgroundImage: "url('/avatar.jpeg')" }} />
-      {name && <Link css={{ lineHeight: '$body', color: '$text_body', '&:hover': { color: '$primary400' } }} href={`mailto: ${email}`}>{capitalizeFirstLetter(name)}</Link>}
+      {name && <Link css={{ fontWeight: '$heading', lineHeight: '$body', color: '$text_headline', '&:hover': { color: '$primary400' } }} href={`mailto: ${email}`}>{capitalizeFirstLetter(name)}</Link>}
     </Stack>
     <Spacer y={2} />
-    {body && <Text body color="muted" css={{ marginLeft: '$4' }}>{capitalizeFirstLetter(body)}</Text>}
+    {body && <Text body color="body" css={{ marginLeft: '$4' }}>{capitalizeFirstLetter(body)}</Text>}
   </Stack>
 }
 
@@ -40,7 +40,7 @@ export const CommentsList = ({ comments = {} }) => {
     gap={4}
     css={{
       paddingLeft: '$4',
-      borderLeft: '1px dashed $gray500'
+      borderLeft: '1px solid rgb(48, 50, 54)'
     }}
   >
     {comments && comments?.map(c => <CommentListItem key={c.id} {...c} />)}
