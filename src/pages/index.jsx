@@ -1,39 +1,40 @@
 import Head from 'next/head'
-import { SWRConfig } from 'swr'
 
-import { PAGE_SIZE, getAllPosts, getPostsByPage } from '@/utils/api'
+import { client } from '@/utils/api/client'
+import { buildEndpoint } from '@/utils/api'
 import BlogPage from '@/components/pages/blog'
 
-export default function Home({ fallback = {}, currentPage, pageCount }) {
+export default function Home({ initialPosts = {}, currentPage, totalPostCount }) {
   return (
     // Pass the pre-fetched data as the initial value of all SWR hooks
-    <SWRConfig value={{ fallback }}>
+    <>
       <Head>
         <title>Page {currentPage} | Attuned</title>
         <meta name="description" content="The latest from us at Attuned" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <BlogPage page={currentPage} pageCount={pageCount} />
-    </SWRConfig>
+      <BlogPage initialPosts={initialPosts} currentPage={currentPage} totalPostCount={totalPostCount} />
+    </>
   )
 }
 
 // prerendering
 export const getStaticProps = async () => {
-  // posts
   const currentPage = 1
-  const allPosts = await getAllPosts({ comments: false })
-  const { endpoint, postsByPage } = await getPostsByPage({ page: currentPage, comments: true })
-  const totalPostCount = allPosts.length
-  const pageCount = totalPostCount / PAGE_SIZE
+
+  // get the length for all posts (for prerendering pagination)
+  const lengthEndpoint = buildEndpoint({ page: false, comments: false, size: false })
+  const allPosts = await client.get(lengthEndpoint)
+
+  // get the posts for the first page (for prerendering list)
+  const endpoint = buildEndpoint({ page: currentPage })
+  const { data } = await client.get(endpoint)
 
   return {
     props: {
+      totalPostCount: allPosts?.length || 0,
       currentPage,
-      pageCount,
-      fallback: {
-        [endpoint]: postsByPage
-      }
+      initialPosts: data
     }
   }
 }

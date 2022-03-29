@@ -27,27 +27,27 @@ const BaseLink = styled('a', {
         color: '$text_body'
       }
     },
-    disabled: {
-      true: {
-        color: '$text_muted',
-        backgroundColor: 'none',
-        // pointerEvents: 'none',
-        cursor: 'not-allowed',
-
-        '&:hover': {
-          backgroundColor: 'none'
-        }
-      }
-    },
     pagination: {
       true: {
         padding: '$2',
         borderRadius: '$md',
-        color: '$text_muted',
+        color: '$text_body',
 
         '&:hover': {
           backgroundColor: '$primary500',
           color: '$text_body'
+        }
+      }
+    },
+    disabled: {
+      true: {
+        color: '$text_muted',
+        backgroundColor: 'transparent',
+        cursor: 'not-allowed',
+
+        '&:hover': {
+          color: '$text_muted',
+          backgroundColor: 'transparent'
         }
       }
     },

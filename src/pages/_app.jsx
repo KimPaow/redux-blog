@@ -1,8 +1,11 @@
+
+import { SWRConfig } from 'swr'
+import { Provider } from 'react-redux';
 import { darkTheme, lightTheme } from '@/theme';
 import { usePrefersDarkMode } from "@/utils/hooks/usePrefersDarkMode"
 import { globalStyles } from "@/stitches/globalStyles"
-import { SWRConfig } from 'swr'
 import { fetcher } from '@/utils/api';
+import store from '@/store';
 
 const swrConfig = {
   fetcher
@@ -14,11 +17,13 @@ function MyApp({ Component, pageProps }) {
   globalStyles();
 
   return (
-    <div data-app className={prefersDarkMode ? darkTheme : lightTheme}>
+    <Provider store={store}>
       <SWRConfig value={swrConfig}>
-        <Component {...pageProps} />
+        <div data-app className={prefersDarkMode ? darkTheme : lightTheme}>
+          <Component {...pageProps} />
+        </div>
       </SWRConfig>
-    </div>
+    </Provider>
   )
 }
 

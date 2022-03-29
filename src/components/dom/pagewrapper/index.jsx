@@ -5,10 +5,10 @@ export const PageWrapper = styled('div', {
   flexDirection: 'column',
   maxWidth: '$9',
   marginX: 'auto',
-  paddingY: '$5',
+  paddingBottom: '$5',
 
   '@sm': {
-    paddingY: '$7'
+    paddingBottom: '$6'
   }
 })
 

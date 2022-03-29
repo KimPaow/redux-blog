@@ -35,6 +35,11 @@ const BaseText = styled('span', {
         color: '$text_headline',
       },
     },
+    status: {
+      error: {
+        color: '$red500',
+      }
+    },
     caption: {
       true: {
         fontSize: '$3',

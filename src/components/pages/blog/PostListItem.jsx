@@ -14,16 +14,23 @@ export const PostListItem = ({ title, body, userId, id, comments, ...props }) =>
   const capitalizedTitle = capitalizeFirstLetter(title)
   const capitalizedBody = capitalizeFirstLetter(body)
 
-  return <Stack column css={{ maxWidth: '700px' }} {...props}>
+  return <Stack as="article" column css={{ maxWidth: '700px' }} {...props}>
     <Text h3 color="headline">{capitalizedTitle}</Text>
     <Spacer y={2} />
     <Text body>{capitalizedBody}</Text>
     <Spacer y={3} />
     <Stack gap={3} align="center">
       <Avatar css={{ backgroundImage: "url('/avatar.jpeg')" }} />
-      <Text as="p" muted css={{ fontSize: '$2' }}>March 28, 2022</Text>
-      <Text muted>|</Text>
-      <Button onClick={() => setShowComments(!showComments)} data-id={id} type="text" css={{ marginRight: 'auto' }}>View Comments</Button>
+      <Text as="p" muted css={{ fontSize: '$2', fontWeight: 600 }}>March 28, 2022</Text>
+      <Text css={{ fontWeight: 700 }} muted>|</Text>
+      {comments && comments.length > 0 && <Button
+        onClick={() => setShowComments(!showComments)}
+        data-id={id}
+        style="text"
+        css={{ marginRight: 'auto', fontWeight: 600 }}
+      >
+        Comments ({comments.length})
+      </Button>}
     </Stack>
     <AnimatePresence>
       {showComments &&

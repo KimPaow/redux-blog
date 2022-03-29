@@ -5,9 +5,13 @@ export const Button = styled('button', {
   lineHeight: 'inherit',
   padding: '$2 $3',
   borderRadius: '$md',
-  transition: 'background-color 0.25s ease-in-out',
+  transition: 'background-color 0.25s ease-in-out, box-shadow 0.15s ease-in-out',
   color: '$white_alpha800',
   textAlign: 'center',
+
+  '&:focus': {
+    boxShadow: '0 0 0 2px $colors$primary400'
+  },
 
   variants: {
     fluid: {
@@ -15,7 +19,7 @@ export const Button = styled('button', {
         minWidth: '$6'
       }
     },
-    type: {
+    style: {
       text: {
         fontSize: '$2',
         color: '$white_alpha900',
@@ -25,6 +29,10 @@ export const Button = styled('button', {
         '&:hover': {
           color: '$primary500',
           backgroundColor: 'none',
+        },
+
+        '&:focus': {
+          boxShadow: 'none'
         },
       },
       solid: {

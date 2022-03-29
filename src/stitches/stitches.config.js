@@ -26,10 +26,14 @@ export const {
       text_muted: "$white_alpha400",
       text_headline: "$white_alpha900",
       text_link: "$text_body",
+      text_highlight_bg: "$primary400",
+      text_highlight_color: "$text_body",
 
       bg_body: "#060606",
 
       card_bg: "$white_alpha100",
+      card_bg_disabled: "$white_alpha100",
+      card_bg_hover: "$white_alpha200",
       card_border: "$white_alpha50",
 
       primary50: "$violet50",
