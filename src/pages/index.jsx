@@ -6,9 +6,10 @@ import BlogPage from '@/components/pages/blog'
 
 export default function Home({ fallback = {}, currentPage, pageCount, comments }) {
   return (
+    // Pass the pre-fetched data as the initial value of all SWR hooks
     <SWRConfig value={{ fallback }}>
       <Head>
-        <title>Attuned Blog</title>
+        <title>Page {currentPage} | Attuned</title>
         <meta name="description" content="The latest from us at Attuned" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -17,13 +18,16 @@ export default function Home({ fallback = {}, currentPage, pageCount, comments }
   )
 }
 
+// prerendering
 export const getStaticProps = async () => {
+  // posts
   const currentPage = 1
   const allPosts = await fetcher(POSTS_ENDPOINT)
   const { endpoint, postsByPage } = await getPostsByPage({ page: currentPage })
   const totalPostCount = allPosts.length
   const pageCount = totalPostCount / PAGE_SIZE
 
+  // comments
   const comments = {}
   const postIds = postsByPage.map(p => p.id)
 
