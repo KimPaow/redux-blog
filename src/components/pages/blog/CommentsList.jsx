@@ -18,7 +18,7 @@ const CommentListItem = ({ name, email, body, ...props }) => {
   >
     <Stack gap={3} align="center">
       <Avatar css={{ backgroundImage: "url('/avatar.jpeg')" }} />
-      {name && <Link css={{ color: '$text_body', '&:hover': { color: '$primary400' } }} href={`mailto: ${email}`} body>{capitalizeFirstLetter(name)}</Link>}
+      {name && <Link css={{ lineHeight: '$body', color: '$text_body', '&:hover': { color: '$primary400' } }} href={`mailto: ${email}`}>{capitalizeFirstLetter(name)}</Link>}
     </Stack>
     <Spacer y={2} />
     {body && <Text body color="muted" css={{ marginLeft: '$4' }}>{capitalizeFirstLetter(body)}</Text>}

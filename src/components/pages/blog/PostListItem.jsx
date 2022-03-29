@@ -22,13 +22,13 @@ export const PostListItem = ({ title, body, userId, id, comments, ...props }) =>
     <Spacer y={3} />
     <Stack gap={3} align="center">
       <Avatar css={{ backgroundImage: "url('/avatar.jpeg')" }} />
-      <Text as="p" muted css={{ fontSize: '$2', fontWeight: 600 }}>March 28, 2022</Text>
-      <Text css={{ fontWeight: 700 }} muted>|</Text>
+      <Text as="p" color="muted" css={{ fontSize: '$2', fontWeight: 500 }}>March 28, 2022</Text>
+      <Text color="muted" css={{ fontWeight: 500 }}>|</Text>
       {comments && comments.length > 0 && <Button
         onClick={() => setShowComments(!showComments)}
         data-id={id}
         style="text"
-        css={{ marginRight: 'auto', fontWeight: 600 }}
+        css={{ marginRight: 'auto', fontWeight: 500 }}
       >
         Comments ({comments.length})
       </Button>}

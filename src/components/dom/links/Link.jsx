@@ -22,11 +22,6 @@ const BaseLink = styled('a', {
         color: '$text_body'
       }
     },
-    active: {
-      true: {
-        color: '$text_body'
-      }
-    },
     pagination: {
       true: {
         padding: '$2',
@@ -71,6 +66,11 @@ const BaseLink = styled('a', {
             right: 0,
           }
         }
+      }
+    },
+    active: {
+      true: {
+        color: '$white_alpha900'
       }
     },
   }

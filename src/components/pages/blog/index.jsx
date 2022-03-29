@@ -67,10 +67,18 @@ export const BlogPage = ({ initialPosts, currentPage, totalPostCount }) => {
 
   return (
     <PageWrapper as="main">
-      <Stack css={{ paddingY: '$4', marginY: '$5', borderBottom: '1px solid $text_muted' }}>
+      <Stack css={{
+        paddingY: '$4',
+        marginBottom: '$5',
+        borderBottom: '1px solid $text_muted',
+
+        '@sm': {
+          marginBottom: '$5',
+        }
+      }}>
         <Search css={{ marginLeft: 'auto' }} />
       </Stack>
-      <Stack gap={[3, 4, 5]} column>
+      <Stack gap={5} column>
         {content}
       </Stack>
       <Pagination resultsCount={resultsCount || totalPostCount} currentPage={page} />

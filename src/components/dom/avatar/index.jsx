@@ -5,5 +5,6 @@ export const Avatar = styled('div', {
   height: '$3',
   borderRadius: '$full',
   objectFit: 'cover',
-  backgroundSize: 'cover'
+  backgroundSize: 'cover',
+  flexShrink: 0
 })

@@ -14,10 +14,10 @@ export const Pagination = ({ resultsCount, currentPage }) => {
     return null
   }
 
-  return <Grid.Row css={{ marginTop: '$6', justifyContent: 'space-between', alignItems: 'center' }}>
+  return <Grid.Row css={{ marginTop: '$6', justifyContent: 'space-between', alignItems: 'center', maxWidth: '100vw' }}>
     <Link pagination disabled={isFirstPage} to={`/?page=${currentPage - 1}`}>{"←"}</Link>
     <Spacer x={3} />
-    <Stack gap={1}>
+    <Stack gap={1} css={{ display: 'none', '@md': { display: 'flex' } }}>
       {paginationArr.map(p => (
         <Link pagination scroll={true} active={p + 1 == currentPage} key={p} to={p === 0 ? '/' : `/?page=${p + 1}`}>
           {p + 1}
