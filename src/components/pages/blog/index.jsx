@@ -82,7 +82,7 @@ export const BlogPage = () => {
           marginBottom: '$5',
         }
       }}>
-        <Search css={{ marginLeft: 'auto' }} />
+        <Search css={{ flex: 1, marginLeft: 'auto', '@sm': { flexGrow: '0' } }} />
       </Stack>
       <Stack gap={5} column>
         <AnimatePresence>
