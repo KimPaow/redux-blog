@@ -1,5 +1,3 @@
-A README file should be included with instructions on running the project as well as any libraries used.
-
 # Attuned Assignment
 
 [See the live version here](https://attuned-assignment.vercel.app/)
