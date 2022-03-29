@@ -20,7 +20,6 @@ export const Search = ({ disabled, ...props }) => {
         name="search"
         placeholder="Search"
         css={{ height: '100%' }}
-      // onChange={handleSubmit}
       />
       <Button
         disabled={disabled}
