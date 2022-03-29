@@ -1,11 +1,12 @@
 
 import { Provider } from 'react-redux';
-import { darkTheme, lightTheme } from '@/theme';
-import { usePrefersDarkMode } from "@/utils/hooks/usePrefersDarkMode"
-import { globalStyles } from "@/stitches/globalStyles"
-import store from '@/store';
 import { useEffect, useState } from 'react';
+import ErrorBoundary from '@/components/dom/error-boundary';
+import { darkTheme, lightTheme } from '@/theme';
+import { globalStyles } from "@/stitches/globalStyles"
+import { usePrefersDarkMode } from "@/utils/hooks/usePrefersDarkMode"
 import Box from '@/components/dom/box';
+import store from '@/store';
 
 function MyApp({ Component, pageProps }) {
   const [dark, setDark] = useState(false)
@@ -18,13 +19,15 @@ function MyApp({ Component, pageProps }) {
   globalStyles();
 
   return (
-    <Provider store={store}>
-      <div data-app className={dark ? darkTheme : lightTheme}>
-        <Box css={{ backgroundColor: '$bg_body', minHeight: '100vh' }}>
-          <Component {...pageProps} />
-        </Box>
-      </div>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <div data-app className={dark ? darkTheme : lightTheme}>
+          <Box css={{ backgroundColor: '$bg_body', minHeight: '100vh' }}>
+            <Component {...pageProps} />
+          </Box>
+        </div>
+      </Provider>
+    </ErrorBoundary>
   )
 }
 
