@@ -178,7 +178,7 @@ export const darkTheme = createTheme('dark-theme', {
   colors: {
     text_body: "$white_alpha700",
     text_body_inverted: "$black_alpha700",
-    text_muted: "$white_alpha400",
+    text_muted: "$white_alpha500",
     text_headline: "$white_alpha900",
     text_link: "$text_body",
     text_highlight_bg: "$primary400",
