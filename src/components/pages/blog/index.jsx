@@ -4,7 +4,8 @@ import { useRouter } from 'next/router'
 import { AnimatePresence } from "framer-motion"
 
 import { selectSearchQuery } from '@/features/search/searchSlice'
-import { selectAllPosts, selectResultsCount, fetchPosts } from '@/features/posts/postsSlice'
+import { selectAllPosts, selectResultsCount, fetchPosts, clearPosts } from '@/features/posts/postsSlice'
+import { setSearchQuery } from '@/features/search/searchSlice'
 import PageWrapper from '@/components/dom/pagewrapper'
 import Stack from "@/components/dom/flex/stack"
 import { PostListItem } from './PostListItem'
@@ -13,18 +14,33 @@ import Search from '@/components/dom/search'
 import Text from '@/components/dom/text'
 import { Loader } from '@/components/dom/loader'
 import Card from '@/components/dom/card'
-import updateQuery from '@/utils/updateQuery'
 
 export const BlogPage = () => {
   const router = useRouter()
   const { query } = router
   const page = Number(query?.page) || 1
+  const dispatch = useDispatch()
 
   // search
+  const handleSubmitSearch = (e) => {
+    e.preventDefault()
+    dispatch(clearPosts())
+    dispatch(setSearchQuery(e?.target?.elements?.search?.value))
+
+    // navigate to page 1 after searching
+    if (page === 1) {
+      // edge case: if you search for a term straight after searching for another term
+      // it won't trigger a fetch in the useEffect for page changes below
+      dispatch(fetchPosts({ page, query: e?.target?.elements?.search?.value }))
+    } else {
+      // proceed like normal if not on page 1
+      router.push('/', null, { shallow: true })
+    }
+  }
+
   const searchQuery = useSelector(selectSearchQuery)
 
   // posts
-  const dispatch = useDispatch()
   const posts = useSelector(selectAllPosts)
   const resultsCount = useSelector(selectResultsCount)
   const postStatus = useSelector(state => state.posts.status)
@@ -37,28 +53,14 @@ export const BlogPage = () => {
     }
   }, [postStatus, dispatch, page])
 
-  // fetch for when query changes
-  useEffect(() => {
-    if (searchQuery) {
-      dispatch(fetchPosts({ page, query: searchQuery }))
-    }
-  }, [searchQuery, dispatch, page])
-
   // fetch for when page changes
   useEffect(() => {
-    dispatch(fetchPosts({ page }))
+    dispatch(fetchPosts({ page, query: searchQuery }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, page])
 
-  // reset page to 1 when query changes
-  useEffect(() => {
-    if (searchQuery && query.page != 1) {
-      updateQuery({ router, key: 'page', value: '1' })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchQuery])
-
   /**
-   * TODO: append search query to router query so you can link to search results
+   * TODO: append search query to router query so you can link to search results (probably won't do this for this assignment)
    */
 
   let content = null
@@ -82,7 +84,7 @@ export const BlogPage = () => {
           marginBottom: '$5',
         }
       }}>
-        <Search css={{ flex: 1, marginLeft: 'auto', '@sm': { flexGrow: '0' } }} />
+        <Search onSubmit={handleSubmitSearch} css={{ flex: 1, marginLeft: 'auto', '@sm': { flexGrow: '0' } }} />
       </Stack>
       <Stack gap={5} column>
         <AnimatePresence>
