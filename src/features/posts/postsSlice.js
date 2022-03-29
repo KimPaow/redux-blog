@@ -1,4 +1,4 @@
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { client } from '@/utils/api/client'
 import { buildEndpoint } from '@/utils/api'
 
@@ -14,7 +14,7 @@ const postsSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchPosts.pending, (state, action) => {
+      .addCase(fetchPosts.pending, (state) => {
         state.status = 'loading'
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {

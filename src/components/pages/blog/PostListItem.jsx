@@ -9,6 +9,7 @@ import { Avatar } from "@/components/dom/avatar"
 import { Spacer } from '@/components/dom/flex'
 import { CommentsList } from './CommentsList'
 
+// eslint-disable-next-line no-unused-vars
 export const PostListItem = ({ title, body, userId, id, comments, ...props }) => {
   const [showComments, setShowComments] = useState(false)
   const capitalizedTitle = capitalizeFirstLetter(title)
