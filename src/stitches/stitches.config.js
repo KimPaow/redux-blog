@@ -24,6 +24,7 @@ export const {
       bg_spacer: "transparent",
       // bg_spacer: "red",
 
+      primaryContrast: '$white_alpha900',
       primary50: "$violet50",
       primary100: "$violet100",
       primary200: "$violet200",

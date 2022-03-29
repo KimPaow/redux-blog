@@ -36,6 +36,7 @@ export const Button = styled('button', {
         },
       },
       solid: {
+        color: '$primaryContrast',
         backgroundColor: '$primary600',
 
         '&:hover': {

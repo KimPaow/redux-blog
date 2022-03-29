@@ -30,7 +30,7 @@ const BaseLink = styled('a', {
 
         '&:hover': {
           backgroundColor: '$primary500',
-          color: '$text_body'
+          color: '$primaryContrast'
         }
       }
     },

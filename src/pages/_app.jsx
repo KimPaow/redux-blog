@@ -16,8 +16,6 @@ function MyApp({ Component, pageProps }) {
   }, [prefersDarkMode])
 
   globalStyles();
-  console.log('prefers dark: ', prefersDarkMode)
-  console.log('dark state: ', dark)
 
   return (
     <Provider store={store}>

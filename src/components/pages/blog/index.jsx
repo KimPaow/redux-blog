@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
+import { AnimatePresence } from "framer-motion"
+
 import { selectSearchQuery } from '@/features/search/searchSlice'
 import { selectAllPosts, selectResultsCount, fetchPosts } from '@/features/posts/postsSlice'
 import PageWrapper from '@/components/dom/pagewrapper'
@@ -13,10 +15,10 @@ import { Loader } from '@/components/dom/loader'
 import Card from '@/components/dom/card'
 import updateQuery from '@/utils/updateQuery'
 
-export const BlogPage = ({ initialPosts, currentPage, totalPostCount }) => {
+export const BlogPage = () => {
   const router = useRouter()
   const { query } = router
-  const page = Number(query?.page) || currentPage || 1
+  const page = Number(query?.page) || 1
 
   // search
   const searchQuery = useSelector(selectSearchQuery)
@@ -55,10 +57,14 @@ export const BlogPage = ({ initialPosts, currentPage, totalPostCount }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery])
 
-  let content = initialPosts?.map(({ id, ...post }) => <PostListItem key={id} id={id} {...post} />)
+  /**
+   * TODO: append search query to router query so you can link to search results
+   */
+
+  let content = null
 
   if (postStatus === 'loading') {
-    content = <Loader />
+    content = <Loader css={{ minHeight: '75vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }} />
   } else if (postStatus === 'succeeded') {
     content = posts?.map(({ id, ...post }) => <PostListItem key={id} id={id} {...post} />)
   } else if (postStatus === 'failed') {
@@ -79,9 +85,11 @@ export const BlogPage = ({ initialPosts, currentPage, totalPostCount }) => {
         <Search css={{ marginLeft: 'auto' }} />
       </Stack>
       <Stack gap={5} column>
-        {content}
+        <AnimatePresence>
+          {content}
+        </AnimatePresence>
       </Stack>
-      <Pagination resultsCount={resultsCount || totalPostCount} currentPage={page} />
+      <Pagination resultsCount={resultsCount} currentPage={page} />
     </PageWrapper>
   )
 }
