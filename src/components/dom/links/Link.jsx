@@ -70,7 +70,7 @@ const BaseLink = styled('a', {
     },
     active: {
       true: {
-        color: '$white_alpha900'
+        color: '$primary500'
       }
     },
   }
