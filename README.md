@@ -2,6 +2,8 @@ A README file should be included with instructions on running the project as wel
 
 # Attuned Assignment
 
+[See the live version here](https://attuned-assignment.vercel.app/)
+
 ## Running the project
 
 From the root, follow these steps:
@@ -11,8 +13,8 @@ From the root, follow these steps:
 
 ## Libraries used
 
-Next.js
-Stitches
-Framer Motion
-React
-Redux + Redux Toolkit
+[Next.js](https://nextjs.org/)
+[Stitches](https://stitches.dev/)
+[Framer Motion](https://www.framer.com/motion/)
+[React](https://reactjs.org/)
+[Redux + Redux Toolkit](https://redux-toolkit.js.org/)
