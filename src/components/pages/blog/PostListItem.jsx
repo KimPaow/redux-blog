@@ -18,7 +18,7 @@ export const PostListItem = ({ title, body, userId, id, comments, ...props }) =>
   return <Stack as="article" column css={{ maxWidth: '700px' }} {...props}>
     <Text h3 color="headline">{capitalizedTitle}</Text>
     <Spacer y={2} />
-    <Text body>{capitalizedBody}</Text>
+    <Text body color="body">{capitalizedBody}</Text>
     <Spacer y={3} />
     <Stack gap={3} align="center">
       <Avatar css={{ backgroundImage: "url('/avatar.jpeg')" }} />

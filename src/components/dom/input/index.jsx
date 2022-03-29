@@ -2,12 +2,12 @@ import { styled } from '@stitches/react'
 
 export const Input = styled('input', {
   border: 'none',
-  padding: '$2 $2',
+  padding: '$2 $3',
   fontSize: '$body',
   fontFamily: '$body',
   color: '$text_body',
   outline: 'none',
-  borderRadius: '$sm',
+  borderRadius: '$md',
   backgroundColor: '$card_bg',
   transition: 'box-shadow 0.15s ease-in-out, background-color 0.15s ease-in-out',
 

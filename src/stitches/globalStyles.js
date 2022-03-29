@@ -27,6 +27,7 @@ export const globalStyles = globalCss({
     overscrollBehavior: "none"
   },
   body: {
+    backgroundColor: '$bg_body',
     fontSize: "1.6rem",
     height: "100%",
     left: "0",

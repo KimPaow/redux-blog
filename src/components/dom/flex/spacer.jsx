@@ -4,6 +4,7 @@ import { styled } from '@/theme'
 const BaseSpacer = styled('span', {
   flexGrow: 0,
   flexShrink: 0,
+  backgroundColor: '$bg_spacer'
 })
 
 export const Spacer = ({ css, x, y, basis, grow, ...props }) => {

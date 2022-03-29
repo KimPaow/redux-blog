@@ -1,3 +1,4 @@
+// quick client for fetching data
 export async function client(endpoint, { body, ...customConfig } = {}) {
   const headers = { 'Content-Type': 'application/json' }
 

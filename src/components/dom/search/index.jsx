@@ -19,6 +19,7 @@ export const Search = ({ disabled, ...props }) => {
         aria-disabled={disabled}
         name="search"
         placeholder="Search"
+        css={{ height: '100%' }}
       // onChange={handleSubmit}
       />
       <Button
@@ -26,6 +27,7 @@ export const Search = ({ disabled, ...props }) => {
         aria-disabled={disabled}
         type="submit"
         style="solid"
+        css={{ height: '100%' }}
       >
         Submit
       </Button>

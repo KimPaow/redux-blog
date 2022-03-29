@@ -22,7 +22,7 @@ export const Button = styled('button', {
     style: {
       text: {
         fontSize: '$2',
-        color: '$white_alpha900',
+        color: '$text_body',
         backgroundColor: 'none',
         padding: '0',
 

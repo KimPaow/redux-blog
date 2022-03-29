@@ -21,20 +21,8 @@ export const {
     colors: {
       ...colors,
 
-      text_body: "$white_alpha700",
-      text_body_inverted: "$black_alpha700",
-      text_muted: "$white_alpha400",
-      text_headline: "$white_alpha900",
-      text_link: "$text_body",
-      text_highlight_bg: "$primary400",
-      text_highlight_color: "$text_body",
-
-      bg_body: "#060606",
-
-      card_bg: "$white_alpha100",
-      card_bg_disabled: "$white_alpha100",
-      card_bg_hover: "$white_alpha200",
-      card_border: "$white_alpha50",
+      bg_spacer: "transparent",
+      // bg_spacer: "red",
 
       primary50: "$violet50",
       primary100: "$violet100",
@@ -187,10 +175,49 @@ export const {
 
 export const darkTheme = createTheme('dark-theme', {
   colors: {
+    text_body: "$white_alpha700",
+    text_body_inverted: "$black_alpha700",
+    text_muted: "$white_alpha400",
+    text_headline: "$white_alpha900",
+    text_link: "$text_body",
+    text_highlight_bg: "$primary400",
+    text_highlight_color: "$text_body",
+
+    bg_body: "#060606",
+
+    card_bg: "$white_alpha100",
+    card_bg_disabled: "$white_alpha100",
+    card_bg_hover: "$white_alpha200",
+    card_border: "$white_alpha50",
   },
 });
 
 export const lightTheme = createTheme('light-theme', {
   colors: {
+    text_body: "$black_alpha700",
+    text_body_inverted: "$white_alpha700",
+    text_muted: "$black_alpha400",
+    text_headline: "$black_alpha900",
+    text_link: "$text_body",
+    text_highlight_bg: "$primary400",
+    text_highlight_color: "$text_body",
+
+    bg_body: "$gray100",
+
+    card_bg: "$black_alpha100",
+    card_bg_disabled: "$black_alpha100",
+    card_bg_hover: "$black_alpha200",
+    card_border: "$black_alpha50",
+
+    // primary50: "$violet50",
+    // primary100: "$violet100",
+    // primary200: "#E1A19E",
+    // primary300: "#D57C77",
+    // primary400: "#C85650",
+    // primary500: "#AD3C36",
+    // primary600: "#882F2A",
+    // primary700: "#61221E",
+    // primary800: "#3A1412",
+    // primary900: "$violet900",
   },
 });

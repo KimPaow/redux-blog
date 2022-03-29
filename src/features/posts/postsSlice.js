@@ -6,8 +6,8 @@ import { buildEndpoint } from '@/utils/api'
 const postsSlice = createSlice({
   name: 'posts',
   initialState: {
-    posts: [],
-    resultsCount: 0,
+    posts: [], // list of posts
+    resultsCount: 0, // total amount of posts
     status: 'idle',
     error: null
   },
@@ -19,7 +19,6 @@ const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        // Add any fetched posts to the array
         state.resultsCount = action.payload.length
         state.posts = action.payload.posts
       })

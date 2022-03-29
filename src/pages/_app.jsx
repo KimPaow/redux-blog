@@ -1,28 +1,31 @@
 
-import { SWRConfig } from 'swr'
 import { Provider } from 'react-redux';
 import { darkTheme, lightTheme } from '@/theme';
 import { usePrefersDarkMode } from "@/utils/hooks/usePrefersDarkMode"
 import { globalStyles } from "@/stitches/globalStyles"
-import { fetcher } from '@/utils/api';
 import store from '@/store';
-
-const swrConfig = {
-  fetcher
-}
+import { useEffect, useState } from 'react';
+import Box from '@/components/dom/box';
 
 function MyApp({ Component, pageProps }) {
+  const [dark, setDark] = useState(false)
   const prefersDarkMode = usePrefersDarkMode();
 
+  useEffect(() => {
+    setDark(prefersDarkMode)
+  }, [prefersDarkMode])
+
   globalStyles();
+  console.log('prefers dark: ', prefersDarkMode)
+  console.log('dark state: ', dark)
 
   return (
     <Provider store={store}>
-      <SWRConfig value={swrConfig}>
-        <div data-app className={prefersDarkMode ? darkTheme : lightTheme}>
+      <div data-app className={dark ? darkTheme : lightTheme}>
+        <Box css={{ backgroundColor: '$bg_body', minHeight: '100vh' }}>
           <Component {...pageProps} />
-        </div>
-      </SWRConfig>
+        </Box>
+      </div>
     </Provider>
   )
 }
