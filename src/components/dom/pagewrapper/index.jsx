@@ -6,7 +6,7 @@ export const PageWrapper = styled('div', {
   maxWidth: '$9',
   marginX: 'auto',
   paddingBottom: '$5',
-  paddingX: '$4',
+  paddingX: '$3',
 
   '@sm': {
     paddingBottom: '$6'
