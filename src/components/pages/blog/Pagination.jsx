@@ -14,7 +14,7 @@ export const Pagination = ({ resultsCount, currentPage }) => {
     return null
   }
 
-  return <Grid.Row css={{ marginTop: '$6', justifyContent: 'space-between', alignItems: 'center', maxWidth: '100vw' }}>
+  return <Grid.Row css={{ marginTop: '$4', justifyContent: 'space-between', alignItems: 'center', maxWidth: '100vw', '@sm': { marginTop: '$5' } }}>
     <Link pagination disabled={isFirstPage} to={`/?page=${currentPage - 1}`}>{"←"}</Link>
     <Spacer x={3} />
     <Stack gap={1} css={{ display: 'none', '@md': { display: 'flex' } }}>

@@ -77,7 +77,7 @@ export const BlogPage = () => {
     <PageWrapper as="main">
       <Stack css={{
         paddingY: '$4',
-        marginBottom: '$5',
+        marginBottom: '$4',
         borderBottom: '1px solid $text_muted',
 
         '@sm': {
@@ -89,7 +89,7 @@ export const BlogPage = () => {
           css={{ flex: 1, marginLeft: 'auto', '@sm': { flexGrow: '0' } }}
         />
       </Stack>
-      <Stack gap={5} column>
+      <Stack gap={[4, 4, 5]} column>
         <AnimatePresence>
           {content}
         </AnimatePresence>
