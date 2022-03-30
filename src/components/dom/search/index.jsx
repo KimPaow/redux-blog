@@ -11,7 +11,7 @@ export const Search = ({ disabled, ...props }) => {
         aria-disabled={disabled}
         name="search"
         placeholder="Search"
-        css={{ height: '100%', flexGrow: 1, '@sm': { flexGrow: 0 } }}
+        css={{ height: '100%', flex: '1 1 auto', '@sm': { flex: '1 0 auto' } }}
       />
       <Button
         disabled={disabled}
