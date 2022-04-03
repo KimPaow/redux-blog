@@ -4,8 +4,31 @@ import { Spacer } from '@/components/dom/flex'
 import { Link } from '@/components/dom/links'
 import Text from '@/components/dom/text'
 import Card from '@/components/dom/card'
+import Box from '@/components/dom/box'
 import { PAGE_SIZE } from '@/utils/api'
 import { useGetPostsQuery } from '@/features/api/apiSlice'
+import { styled } from '@/theme'
+
+const ScrollCover = styled('div', {
+  position: 'absolute',
+  top: 0,
+  bottom: 0,
+  width: '$4',
+  zIndex: 100,
+
+  variants: {
+    side: {
+      left: {
+        left: 0,
+        linearGradient: 'to right, $colors$bg_body, rgba(0, 0, 0, 0)',
+      },
+      right: {
+        right: 0,
+        linearGradient: 'to left, $colors$bg_body, rgba(0, 0, 0, 0)',
+      }
+    }
+  }
+})
 
 export const Pagination = ({ query, currentPage }) => {
   const {
@@ -34,15 +57,28 @@ export const Pagination = ({ query, currentPage }) => {
 
   return <Grid.Row css={{ marginTop: '$4', justifyContent: 'space-between', alignItems: 'center', maxWidth: '100vw', '@sm': { marginTop: '$5' } }}>
     <Link pagination disabled={isFirstPage} to={`/?page=${currentPage - 1}`}>{"←"}</Link>
+    <Spacer basis={3} />
     {content && (
-      <>
-        <Spacer x={3} />
-        <Stack gap={1} css={{ display: 'none', '@md': { display: 'flex' } }}>
+      <Box css={{ position: 'relative', flexGrow: 0, flexShrink: 1, maxWidth: '60vw', '@md': { maxWidth: 'none' } }}>
+        <ScrollCover side="left" />
+        <ScrollCover side="right" />
+        <Stack gap={1} css={{
+          overflowX: 'scroll',
+          paddingY: '$2',
+          position: 'relative',
+          paddingX: '$4',
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+
+          '&::-webkit-scrollbar': {
+            display: 'none'
+          }
+        }}>
           {content}
         </Stack>
-        <Spacer x={3} />
-      </>
+      </Box>
     )}
+    <Spacer basis={3} />
     <Link pagination disabled={isLastPage} to={`/?page=${currentPage + 1}`}>{"→"}</Link>
   </Grid.Row>
 }
