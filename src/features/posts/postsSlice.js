@@ -42,10 +42,6 @@ export default postsSlice.reducer
 // Actions
 export const { clearPosts } = postsSlice.actions
 
-// Selectors
-export const selectAllPosts = state => state?.posts?.posts
-export const selectResultsCount = state => state?.posts?.resultsCount
-
 // Thunks
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async ({ query, page = 1, comments = true, size }) => {
   // messy, but only way to get length

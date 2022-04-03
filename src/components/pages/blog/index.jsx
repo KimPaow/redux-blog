@@ -41,17 +41,14 @@ export const BlogPage = () => {
   const searchQuery = useSelector(selectSearchQuery)
 
   // posts
-  const posts = useSelector(selectAllPosts)
-  const resultsCount = useSelector(selectResultsCount)
-  const postStatus = useSelector(state => state.posts.status)
-  const postError = useSelector(state => state.posts.error)
+  const { status, error, posts, resultsCount } = useSelector(state => state.posts)
 
   // fetch for first mount
   useEffect(() => {
-    if (postStatus === 'idle') {
+    if (status === 'idle') {
       dispatch(fetchPosts({ page }))
     }
-  }, [postStatus, dispatch, page])
+  }, [status, dispatch, page])
 
   // fetch for when page changes
   useEffect(() => {
@@ -65,12 +62,12 @@ export const BlogPage = () => {
 
   let content = null
 
-  if (postStatus === 'loading') {
+  if (status === 'loading') {
     content = <Loader css={{ minHeight: '75vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }} />
-  } else if (postStatus === 'succeeded') {
+  } else if (status === 'succeeded') {
     content = posts?.map(({ id, ...post }) => <PostListItem key={id} id={id} {...post} />)
-  } else if (postStatus === 'failed') {
-    content = <Card status="error"><Text status="error">{postError}</Text></Card>
+  } else if (status === 'failed') {
+    content = <Card status="error"><Text status="error">{error}</Text></Card>
   }
 
   return (
