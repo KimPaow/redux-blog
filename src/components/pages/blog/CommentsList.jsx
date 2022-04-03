@@ -43,7 +43,6 @@ export const CommentsList = ({ id }) => {
   }
 
   let content = null
-  console.log('comments: ', comments)
 
   if (isLoading) {
     // TODO: We should probably make a skeleton for results while loading to avoid CLS (layout shift), minHeight is a temp fix

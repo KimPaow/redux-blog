@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 import { Button } from "@/components/dom/button"
