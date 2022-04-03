@@ -34,12 +34,14 @@ const handleSubmitSearch = ({ page, router, dispatch, event }) => {
   }
 }
 
-const searchStyles = {
-  flex: 1,
-  marginLeft: 'auto',
+const styles = {
+  searchStyles: {
+    flex: 1,
+    marginLeft: 'auto',
 
-  '@sm': {
-    flexGrow: '0'
+    '@sm': {
+      flexGrow: '0'
+    }
   }
 }
 
@@ -78,7 +80,7 @@ export const BlogPage = () => {
       <Header>
         <Search
           onSubmit={(event) => handleSubmitSearch({ event, page, router, dispatch })}
-          css={searchStyles}
+          css={styles.searchStyles}
         />
       </Header>
       <Stack gap={[4, 4, 5]} column>
