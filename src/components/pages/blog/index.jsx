@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { AnimatePresence } from "framer-motion"
 
 import { selectSearchQuery } from '@/features/search/searchSlice'
-import { selectAllPosts, selectResultsCount, fetchPosts, clearPosts } from '@/features/posts/postsSlice'
+import { fetchPosts, clearPosts } from '@/features/posts/postsSlice'
 import { setSearchQuery } from '@/features/search/searchSlice'
 import PageWrapper from '@/components/dom/pagewrapper'
 import Stack from "@/components/dom/flex/stack"
@@ -83,7 +83,14 @@ export const BlogPage = () => {
       }}>
         <Search
           onSubmit={(event) => handleSubmitSearch({ event, page, router, dispatch })}
-          css={{ flex: 1, marginLeft: 'auto', '@sm': { flexGrow: '0' } }}
+          css={{
+            flex: 1,
+            marginLeft: 'auto',
+
+            '@sm': {
+              flexGrow: '0'
+            }
+          }}
         />
       </Stack>
       <Stack gap={[4, 4, 5]} column>
