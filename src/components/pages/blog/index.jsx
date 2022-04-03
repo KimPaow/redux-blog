@@ -54,14 +54,19 @@ export const BlogPage = () => {
   // Fetch data on first mount or when page changes
   useEffect(() => {
     dispatch(fetchPosts({ page, query: searchQuery }))
-    // We can't pass searchQuery into the dependency array as that will cause
-    // the app to fetch twice when you search; once when 'page' changes and
-    // once more again when searchQuery changes
+
+    /** 
+    * We can't pass searchQuery into the dependency array as that will cause
+    * the app to fetch twice when you search; once when 'page' changes and
+    * once more again when searchQuery changes
+    */
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, page])
 
   /**
-   * TODO: append search query to router query so you can link to search results (probably won't do this for this assignment)
+   * TODO: append search query to router query so you can link 
+   * to search results (probably won't do this for this assignment)
    */
 
   let content = null

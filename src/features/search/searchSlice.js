@@ -7,7 +7,7 @@ export const searchSlice = createSlice({
     query: ''
   },
   reducers: {
-    clear: state => {
+    clearSearchQuery: state => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the immer library,
       // which detects changes to a "draft state" and produces a brand new
@@ -20,7 +20,7 @@ export const searchSlice = createSlice({
   }
 })
 
-export const { clear, setSearchQuery } = searchSlice.actions
+export const { clearSearchQuery, setSearchQuery } = searchSlice.actions
 
 export const selectSearchQuery = state => state.search.query
 
