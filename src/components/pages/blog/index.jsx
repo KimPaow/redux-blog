@@ -1,11 +1,9 @@
-import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
-import { AnimatePresence } from 'framer-motion'
 
 import { selectSearchQuery } from '@/features/search/searchSlice'
-import { fetchPosts } from '@/features/posts/postsSlice'
 import { setSearchQuery } from '@/features/search/searchSlice'
+import { useGetPostsQuery } from '@/features/api/apiSlice'
 
 import PageWrapper from '@/components/dom/pagewrapper'
 import Stack from '@/components/dom/flex/stack'
@@ -22,13 +20,7 @@ const handleSubmitSearch = ({ page, router, dispatch, event }) => {
   event.preventDefault()
   dispatch(setSearchQuery(event?.target?.elements?.search?.value))
 
-  // Navigate to page 1 after searching
-  if (page === 1) {
-    // Edge case: if you search for a term straight from page 1 it won't
-    // trigger a fetch in the useEffect below since the page value is still 1
-    dispatch(fetchPosts({ page, query: event?.target?.elements?.search?.value }))
-  } else {
-    // proceed like normal if not on page 1
+  if (page !== 1) {
     router.push('/', null, { shallow: true })
   }
 }
@@ -47,22 +39,16 @@ const styles = {
 export const BlogPage = () => {
   const dispatch = useDispatch()
   const searchQuery = useSelector(selectSearchQuery)
-  const { status, error, posts, resultsCount } = useSelector(state => state.posts)
   const router = useRouter()
   const page = Number(router?.query?.page) || 1
 
-  // Fetch data on first mount or when page changes
-  useEffect(() => {
-    dispatch(fetchPosts({ page, query: searchQuery }))
-
-    /** 
-    * We can't pass searchQuery into the dependency array as that will cause
-    * the app to fetch twice when you search; once when 'page' changes and
-    * once more again when searchQuery changes
-    */
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, page])
+  const {
+    data: posts,
+    isLoading,
+    isSuccess,
+    isError,
+    error
+  } = useGetPostsQuery({ page, query: searchQuery })
 
   /**
    * TODO: append search query to router query so you can link 
@@ -71,13 +57,13 @@ export const BlogPage = () => {
 
   let content = null
 
-  if (status === 'loading') {
-    // TODO: We should probably make a skeleton for results while loading to avoid CLS, minHeight is a temp fix
+  if (isLoading) {
+    // TODO: We should probably make a skeleton for results while loading to avoid CLS (layout shift), minHeight is a temp fix
     content = <Loader css={{ minHeight: '75vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }} />
-  } else if (status === 'succeeded') {
-    content = posts?.map(({ id, ...post }) => <PostListItem key={id} id={id} {...post} />)
-  } else if (status === 'failed') {
-    content = <Card status="error"><Text status="error">{error}</Text></Card>
+  } else if (isSuccess) {
+    content = posts?.map(({ id, ...post }) => <PostListItem data-id={id} key={id} id={id} {...post} />)
+  } else if (isError) {
+    content = <Card status="error"><Text status="error">{JSON.stringify(error, null, 2)}</Text></Card>
   }
 
   return (
@@ -89,11 +75,9 @@ export const BlogPage = () => {
         />
       </Header>
       <Stack gap={[4, 4, 5]} column>
-        <AnimatePresence>
-          {content}
-        </AnimatePresence>
+        {content}
       </Stack>
-      <Pagination resultsCount={resultsCount} currentPage={page} />
+      <Pagination currentPage={page} query={searchQuery} />
     </PageWrapper>
   )
 }

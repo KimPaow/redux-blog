@@ -2,9 +2,15 @@
 export const PAGE_SIZE = 5
 
 // helper to construct the api endpoint
-export const buildEndpoint = ({ query = '', page, comments = true, size = PAGE_SIZE }) => {
-  let endpoint = `https://jsonplaceholder.typicode.com/posts`
+export const buildPostsEndpoint = (options) => {
+  const {
+    query = '',
+    page,
+    comments = false,
+    size = PAGE_SIZE
+  } = options || {}
 
+  let endpoint = `/posts`
   const queries = []
 
   if (query) {

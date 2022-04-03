@@ -1,11 +1,15 @@
 import { motion } from 'framer-motion'
 
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
-import { Stack } from "@/components/dom/flex";
-import { Avatar } from '@/components/dom/avatar';
-import Text from '@/components/dom/text';
+import { Stack } from "@/components/dom/flex"
+import { Avatar } from '@/components/dom/avatar'
+import Text from '@/components/dom/text'
 import { Spacer } from '@/components/dom/flex'
-import { Link } from '@/components/dom/links';
+import { Link } from '@/components/dom/links'
+import Loader from '@/components/dom/loader'
+import Card from '@/components/dom/card'
+
+import { useGetCommentsQuery } from '@/features/api/apiSlice'
 
 // eslint-disable-next-line no-unused-vars
 const CommentListItem = ({ name, email, body, postId, ...props }) => {
@@ -26,9 +30,28 @@ const CommentListItem = ({ name, email, body, postId, ...props }) => {
   </Stack>
 }
 
-export const CommentsList = ({ comments = {} }) => {
-  if (!comments) {
+export const CommentsList = ({ id }) => {
+  const {
+    data: comments,
+    isLoading,
+    isSuccess,
+    isError,
+    error } = useGetCommentsQuery(id)
+
+  if (!id) {
     return null
+  }
+
+  let content = null
+  console.log('comments: ', comments)
+
+  if (isLoading) {
+    // TODO: We should probably make a skeleton for results while loading to avoid CLS (layout shift), minHeight is a temp fix
+    content = <Loader css={{ minHeight: '150px', display: 'flex', justifyContent: 'center', alignItems: 'center' }} />
+  } else if (isSuccess) {
+    content = comments?.map(({ id, ...post }) => <CommentListItem key={id} id={id} {...post} />)
+  } else if (isError) {
+    content = <Card status="error"><Text status="error">{JSON.stringify(error, null, 2)}</Text></Card>
   }
 
   return <Stack
@@ -43,6 +66,6 @@ export const CommentsList = ({ comments = {} }) => {
       borderLeft: '1px solid rgb(48, 50, 54)'
     }}
   >
-    {comments && comments?.map(c => <CommentListItem key={c.id} {...c} />)}
+    {content}
   </Stack>
 }

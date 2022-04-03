@@ -10,17 +10,14 @@ import { Spacer } from '@/components/dom/flex'
 import { CommentsList } from './CommentsList'
 
 // eslint-disable-next-line no-unused-vars
-export const PostListItem = ({ title, body, userId, id, comments, ...props }) => {
+export const PostListItem = ({ title, body, userId, id, ...props }) => {
   const [showComments, setShowComments] = useState(false)
   const capitalizedTitle = capitalizeFirstLetter(title)
   const capitalizedBody = capitalizeFirstLetter(body)
 
   return (
     <Stack
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      as={motion.article}
+      as="article"
       column
       css={{ maxWidth: '700px' }}
       {...props}
@@ -33,23 +30,21 @@ export const PostListItem = ({ title, body, userId, id, comments, ...props }) =>
         <Avatar css={{ backgroundImage: "url('/avatar.jpeg')" }} />
         <Text body as="p" color="body" css={{ fontSize: '$2', fontWeight: 500 }}>March 28, 2022</Text>
         <Text css={{ marginLeft: '$2', color: 'rgb(48, 50, 54)', fontWeight: 500 }}>|</Text>
-        {comments && comments.length > 0 && (
-          <Button
-            onMouseDown={e => e.preventDefault()} // disable focus on click
-            onClick={() => {
-              setShowComments(!showComments)
-            }}
-            data-id={id}
-            style="text"
-            css={{ marginRight: 'auto', fontWeight: 500 }}
-          >
-            Comments ({comments.length})
-          </Button>
-        )}
+        <Button
+          onMouseDown={e => e.preventDefault()} // disable focus on click
+          onClick={() => {
+            setShowComments(!showComments)
+          }}
+          data-id={id}
+          style="text"
+          css={{ marginRight: 'auto', fontWeight: 500 }}
+        >
+          Show Comments
+        </Button>
       </Stack>
       <AnimatePresence>
         {showComments &&
-          <CommentsList comments={comments} />
+          <CommentsList id={id} />
         }
       </AnimatePresence>
     </Stack>

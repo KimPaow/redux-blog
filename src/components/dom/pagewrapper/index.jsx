@@ -9,8 +9,9 @@ export const PageWrapper = styled('div', {
   paddingX: '$3',
 
   '@sm': {
-    paddingBottom: '$6'
-  }
+    paddingBottom: '$6',
+    paddingX: '$4',
+  },
 })
 
 export default PageWrapper;
