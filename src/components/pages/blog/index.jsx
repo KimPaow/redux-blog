@@ -15,28 +15,28 @@ import Text from '@/components/dom/text'
 import { Loader } from '@/components/dom/loader'
 import Card from '@/components/dom/card'
 
+// search
+const handleSubmitSearch = ({ page, router, dispatch, event }) => {
+  event.preventDefault()
+  dispatch(clearPosts())
+  dispatch(setSearchQuery(event?.target?.elements?.search?.value))
+
+  // navigate to page 1 after searching
+  if (page === 1) {
+    // edge case: if you search for a term straight after searching for another term
+    // it won't trigger a fetch in the useEffect for page changes below
+    dispatch(fetchPosts({ page, query: event?.target?.elements?.search?.value }))
+  } else {
+    // proceed like normal if not on page 1
+    router.push('/', null, { shallow: true })
+  }
+}
+
 export const BlogPage = () => {
   const router = useRouter()
   const { query } = router
   const page = Number(query?.page) || 1
   const dispatch = useDispatch()
-
-  // search
-  const handleSubmitSearch = (e) => {
-    e.preventDefault()
-    dispatch(clearPosts())
-    dispatch(setSearchQuery(e?.target?.elements?.search?.value))
-
-    // navigate to page 1 after searching
-    if (page === 1) {
-      // edge case: if you search for a term straight after searching for another term
-      // it won't trigger a fetch in the useEffect for page changes below
-      dispatch(fetchPosts({ page, query: e?.target?.elements?.search?.value }))
-    } else {
-      // proceed like normal if not on page 1
-      router.push('/', null, { shallow: true })
-    }
-  }
 
   const searchQuery = useSelector(selectSearchQuery)
 
@@ -85,7 +85,7 @@ export const BlogPage = () => {
         }
       }}>
         <Search
-          onSubmit={handleSubmitSearch}
+          onSubmit={(event) => handleSubmitSearch({ event, page, router, dispatch })}
           css={{ flex: 1, marginLeft: 'auto', '@sm': { flexGrow: '0' } }}
         />
       </Stack>
