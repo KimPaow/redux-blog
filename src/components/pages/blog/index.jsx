@@ -1,19 +1,22 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence } from 'framer-motion'
 
 import { selectSearchQuery } from '@/features/search/searchSlice'
 import { fetchPosts, clearPosts } from '@/features/posts/postsSlice'
 import { setSearchQuery } from '@/features/search/searchSlice'
+
 import PageWrapper from '@/components/dom/pagewrapper'
-import Stack from "@/components/dom/flex/stack"
-import { PostListItem } from './PostListItem'
-import { Pagination } from './Pagination'
+import Stack from '@/components/dom/flex/stack'
 import Search from '@/components/dom/search'
 import Text from '@/components/dom/text'
-import { Loader } from '@/components/dom/loader'
+import Loader from '@/components/dom/loader'
 import Card from '@/components/dom/card'
+import Header from '@/components/dom/header'
+
+import PostListItem from '@/components/pages/blog/PostListItem'
+import Pagination from '@/components/pages/blog/Pagination'
 
 const handleSubmitSearch = ({ page, router, dispatch, event }) => {
   event.preventDefault()
@@ -31,6 +34,15 @@ const handleSubmitSearch = ({ page, router, dispatch, event }) => {
   }
 }
 
+const searchStyles = {
+  flex: 1,
+  marginLeft: 'auto',
+
+  '@sm': {
+    flexGrow: '0'
+  }
+}
+
 export const BlogPage = () => {
   const dispatch = useDispatch()
   const searchQuery = useSelector(selectSearchQuery)
@@ -38,16 +50,12 @@ export const BlogPage = () => {
   const router = useRouter()
   const page = Number(router?.query?.page) || 1
 
-  // fetch for first mount
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchPosts({ page }))
-    }
-  }, [status, dispatch, page])
-
-  // fetch for when page changes
+  // fetch on first mount or when page changes
   useEffect(() => {
     dispatch(fetchPosts({ page, query: searchQuery }))
+    // We can't pass searchQuery into the dependency array as that will cause
+    // the app to fetch twice when you search; once when 'page' changes and
+    // once more again when searchQuery changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, page])
 
@@ -67,27 +75,12 @@ export const BlogPage = () => {
 
   return (
     <PageWrapper as="main">
-      <Stack css={{
-        paddingY: '$4',
-        marginBottom: '$4',
-        borderBottom: '1px solid $text_muted',
-
-        '@sm': {
-          marginBottom: '$5',
-        }
-      }}>
+      <Header>
         <Search
           onSubmit={(event) => handleSubmitSearch({ event, page, router, dispatch })}
-          css={{
-            flex: 1,
-            marginLeft: 'auto',
-
-            '@sm': {
-              flexGrow: '0'
-            }
-          }}
+          css={searchStyles}
         />
-      </Stack>
+      </Header>
       <Stack gap={[4, 4, 5]} column>
         <AnimatePresence>
           {content}
