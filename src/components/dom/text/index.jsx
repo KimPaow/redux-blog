@@ -1,4 +1,4 @@
-import { styled } from '@/theme'
+import { styled } from '@/theme/stitches.config'
 
 export const Divider = styled('hr', {
   width: '$5',

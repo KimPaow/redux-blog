@@ -1,4 +1,4 @@
-import { globalCss } from '@/theme';
+import { globalCss } from '@/theme/stitches.config';
 import styleReset from "./reset";
 
 export const globalStyles = globalCss({

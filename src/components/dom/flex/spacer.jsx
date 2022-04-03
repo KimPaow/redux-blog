@@ -1,5 +1,5 @@
 import getResponsiveValues from '@/utils/getResponsiveValues';
-import { styled } from '@/theme'
+import { styled } from '@/theme/stitches.config'
 
 const BaseSpacer = styled('span', {
   flexGrow: 0,

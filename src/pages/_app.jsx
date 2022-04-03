@@ -2,8 +2,8 @@
 import { Provider } from 'react-redux';
 import { useEffect, useState } from 'react';
 import ErrorBoundary from '@/components/dom/error-boundary';
-import { darkTheme, lightTheme } from '@/theme';
-import { globalStyles } from "@/stitches/globalStyles"
+import { darkTheme, lightTheme } from '@/theme/stitches.config';
+import { globalStyles } from "@/theme/globalStyles"
 import { usePrefersDarkMode } from "@/utils/hooks/usePrefersDarkMode"
 import Box from '@/components/dom/box';
 import store from '@/store';

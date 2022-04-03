@@ -1,4 +1,4 @@
-import { styled } from '@/theme'
+import { styled } from '@/theme/stitches.config'
 import NextLink from 'next/link'
 
 const BaseLink = styled('a', {

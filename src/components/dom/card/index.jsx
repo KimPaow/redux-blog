@@ -1,4 +1,4 @@
-import { styled } from "@/theme";
+import { styled } from "@/theme/stitches.config";
 import { Box } from '@/components/dom/box'
 
 const BaseCard = styled(Box, {

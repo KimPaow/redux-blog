@@ -1,4 +1,4 @@
-import { styled } from '@/theme'
+import { styled } from '@/theme/stitches.config'
 import { forwardRef } from 'react';
 import { getResponsiveValues } from '@/utils/getResponsiveValues'
 

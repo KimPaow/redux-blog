@@ -1,4 +1,4 @@
-import { styled } from "@/theme"
+import { styled } from "@/theme/stitches.config"
 
 export const Avatar = styled('div', {
   width: '$3',

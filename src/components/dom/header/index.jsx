@@ -1,5 +1,5 @@
 import Stack from "@/components/dom/flex/stack"
-import { styled } from '@/stitches/stitches.config'
+import { styled } from '@/theme/stitches.config'
 
 export const Header = styled(Stack, {
   paddingY: '$4',

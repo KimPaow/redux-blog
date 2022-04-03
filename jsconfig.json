@@ -6,7 +6,7 @@
         "src/*"
       ],
       "@/theme": [
-        "src/stitches/stitches.config"
+        "src/theme/stitches.config"
       ],
     }
   }
