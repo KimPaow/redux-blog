@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { AnimatePresence } from 'framer-motion'
 
 import { selectSearchQuery } from '@/features/search/searchSlice'
-import { fetchPosts, clearPosts } from '@/features/posts/postsSlice'
+import { fetchPosts } from '@/features/posts/postsSlice'
 import { setSearchQuery } from '@/features/search/searchSlice'
 
 import PageWrapper from '@/components/dom/pagewrapper'
@@ -20,13 +20,12 @@ import Pagination from '@/components/pages/blog/Pagination'
 
 const handleSubmitSearch = ({ page, router, dispatch, event }) => {
   event.preventDefault()
-  dispatch(clearPosts())
   dispatch(setSearchQuery(event?.target?.elements?.search?.value))
 
   // Navigate to page 1 after searching
   if (page === 1) {
-    // Edge case: if you search for a term straight from page 1
-    // it won't trigger a fetch in the useEffect below since the page value is still 1
+    // Edge case: if you search for a term straight from page 1 it won't
+    // trigger a fetch in the useEffect below since the page value is still 1
     dispatch(fetchPosts({ page, query: event?.target?.elements?.search?.value }))
   } else {
     // proceed like normal if not on page 1

@@ -11,15 +11,6 @@ const postsSlice = createSlice({
     status: 'idle',
     error: null
   },
-  reducers: {
-    clearPosts: state => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.posts = []
-    },
-  },
   extraReducers(builder) {
     builder
       .addCase(fetchPosts.pending, (state) => {
@@ -38,9 +29,6 @@ const postsSlice = createSlice({
 })
 
 export default postsSlice.reducer
-
-// Actions
-export const { clearPosts } = postsSlice.actions
 
 // Thunks
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async ({ query, page = 1, comments = true, size }) => {
