@@ -23,10 +23,10 @@ const handleSubmitSearch = ({ page, router, dispatch, event }) => {
   dispatch(clearPosts())
   dispatch(setSearchQuery(event?.target?.elements?.search?.value))
 
-  // navigate to page 1 after searching
+  // Navigate to page 1 after searching
   if (page === 1) {
-    // edge case: if you search for a term straight after searching for another term
-    // it won't trigger a fetch in the useEffect for page changes below
+    // Edge case: if you search for a term straight from page 1
+    // it won't trigger a fetch in the useEffect below since the page value is still 1
     dispatch(fetchPosts({ page, query: event?.target?.elements?.search?.value }))
   } else {
     // proceed like normal if not on page 1
@@ -52,7 +52,7 @@ export const BlogPage = () => {
   const router = useRouter()
   const page = Number(router?.query?.page) || 1
 
-  // fetch on first mount or when page changes
+  // Fetch data on first mount or when page changes
   useEffect(() => {
     dispatch(fetchPosts({ page, query: searchQuery }))
     // We can't pass searchQuery into the dependency array as that will cause
@@ -68,6 +68,7 @@ export const BlogPage = () => {
   let content = null
 
   if (status === 'loading') {
+    // TODO: We should probably make a skeleton for results while loading to avoid CLS, minHeight is a temp fix
     content = <Loader css={{ minHeight: '75vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }} />
   } else if (status === 'succeeded') {
     content = posts?.map(({ id, ...post }) => <PostListItem key={id} id={id} {...post} />)

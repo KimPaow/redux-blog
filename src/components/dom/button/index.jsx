@@ -30,10 +30,6 @@ export const Button = styled('button', {
           color: '$text_body',
           backgroundColor: 'none',
         },
-
-        // '&:focus': {
-        //   boxShadow: 'none'
-        // },
       },
       solid: {
         color: '$primaryContrast',
