@@ -15,7 +15,6 @@ import Text from '@/components/dom/text'
 import { Loader } from '@/components/dom/loader'
 import Card from '@/components/dom/card'
 
-// search
 const handleSubmitSearch = ({ page, router, dispatch, event }) => {
   event.preventDefault()
   dispatch(clearPosts())
@@ -33,15 +32,11 @@ const handleSubmitSearch = ({ page, router, dispatch, event }) => {
 }
 
 export const BlogPage = () => {
-  const router = useRouter()
-  const { query } = router
-  const page = Number(query?.page) || 1
   const dispatch = useDispatch()
-
   const searchQuery = useSelector(selectSearchQuery)
-
-  // posts
   const { status, error, posts, resultsCount } = useSelector(state => state.posts)
+  const router = useRouter()
+  const page = Number(router?.query?.page) || 1
 
   // fetch for first mount
   useEffect(() => {
