@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 import { Stack } from "@/components/dom/flex"
@@ -11,15 +11,13 @@ import Card from '@/components/dom/card'
 
 import { useGetCommentsQuery } from '@/features/api/apiSlice'
 
-// eslint-disable-next-line no-unused-vars
-const CommentListItem = ({ name, email, body, postId, ...props }) => {
+const CommentListItem = ({ name, email, body }) => {
   return <Stack
     column
     as={motion.li}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
-    {...props}
   >
     <Stack gap={3} align="center">
       <Avatar css={{ backgroundImage: "url('/avatar.jpeg')" }} />
@@ -54,17 +52,15 @@ export const CommentsList = ({ id }) => {
   }
 
   return <Stack
-    initial={{ height: 0, marginTop: 0 }}
-    animate={{ height: 'auto', marginTop: '3.2rem' }}
-    exit={{ height: 0, marginTop: 0 }}
-    as={motion.ul}
+    as="ul"
     column
     gap={4}
     css={{
+      marginTop: '$3',
       paddingLeft: '$4',
       borderLeft: '1px solid rgb(48, 50, 54)'
     }}
   >
-    {content}
+    <AnimatePresence>{content}</AnimatePresence>
   </Stack>
 }

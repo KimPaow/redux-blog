@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { AnimatePresence } from "framer-motion"
 
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 import { Button } from "@/components/dom/button"
@@ -42,11 +41,9 @@ export const PostListItem = ({ title, body, userId, id, ...props }) => {
           Show Comments
         </Button>
       </Stack>
-      <AnimatePresence>
-        {showComments &&
-          <CommentsList id={id} />
-        }
-      </AnimatePresence>
+      {showComments &&
+        <CommentsList id={id} />
+      }
     </Stack>
   )
 }
