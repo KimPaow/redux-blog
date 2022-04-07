@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
-    Fathom.load('OJSCTAOQ', {
+    Fathom.load('YANNQPPK', {
       includedDomains: ['reduxblog.bjorkman.kim', 'wwww.reduxblog.bjorkman.kim', 'bjorkman.kim', 'www.bjorkman.kim'],
     });
 
