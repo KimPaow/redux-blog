@@ -1,6 +1,8 @@
-# Attuned Assignment
+# Redux Toolkit Blog
 
-[See the live version here](https://attuned-assignment.vercel.app/)
+[See the live demo here](https://reduxblog.bjorkman.kim/)
+
+This is a fun little experiment to test the water with Redux Toolkit. It fetches data from jsonplaceholder api with the built-in [RTK Query](https://redux-toolkit.js.org/tutorials/rtk-query)
 
 ## Running the project
 
@@ -18,10 +20,10 @@ From the root, follow these steps:
 - `/utils/` - a collection of hooks and other helpers.
 - `/store.js` - the global state is initiated and configured here.
 
-## Libraries used
+## Notable dependencies used
 
-- [Next.js](https://nextjs.org/)
-- [Stitches](https://stitches.dev/) for theming and component composition
-- [Framer Motion](https://www.framer.com/motion/) for animations
 - [React](https://reactjs.org/)
+- [Next.js](https://nextjs.org/)
 - [Redux + Redux Toolkit](https://redux-toolkit.js.org/) for state management and data fetching
+- [Stitches](https://stitches.dev/) for theming and component composition
+- [Framer Motion](https://www.framer.com/motion/) for the animations
