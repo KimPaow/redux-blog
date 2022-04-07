@@ -2,7 +2,7 @@
 
 [See the live demo here](https://reduxblog.bjorkman.kim/)
 
-This is a fun little experiment to test the water with Redux Toolkit. It fetches data from jsonplaceholder api with the built-in [RTK Query](https://redux-toolkit.js.org/tutorials/rtk-query)
+This is a fun little experiment to test the water with Redux Toolkit. It fetches data from jsonplaceholder api with [RTK Query](https://redux-toolkit.js.org/tutorials/rtk-query)
 
 ## Running the project
 
