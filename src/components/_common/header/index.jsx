@@ -1,4 +1,4 @@
-import Stack from "@/components/dom/flex/stack"
+import Stack from "@/components/_common/flex/stack"
 import { styled } from '@/theme/stitches.config'
 
 export const Header = styled(Stack, {

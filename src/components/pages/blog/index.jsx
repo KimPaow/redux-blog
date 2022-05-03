@@ -5,16 +5,16 @@ import { selectSearchQuery } from '@/features/search/searchSlice'
 import { setSearchQuery } from '@/features/search/searchSlice'
 import { useGetPostsQuery } from '@/features/api/apiSlice'
 
-import PageWrapper from '@/components/dom/pagewrapper'
-import Stack from '@/components/dom/flex/stack'
-import Search from '@/components/dom/search'
-import Text from '@/components/dom/text'
-import Loader from '@/components/dom/loader'
-import Card from '@/components/dom/card'
-import Header from '@/components/dom/header'
+import PageWrapper from '@/components/_common/pagewrapper'
+import Stack from '@/components/_common/flex/stack'
+import Search from '@/components/_common/search'
+import Text from '@/components/_common/text'
+import Loader from '@/components/_common/loader'
+import Card from '@/components/_common/card'
+import Header from '@/components/_common/header'
+import Pagination from '@/components/_common/pagination'
 
 import PostListItem from '@/components/pages/blog/PostListItem'
-import Pagination from '@/components/pages/blog/Pagination'
 
 const handleSubmitSearch = ({ page, router, dispatch, event }) => {
   event.preventDefault()

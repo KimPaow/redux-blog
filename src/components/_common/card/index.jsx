@@ -1,5 +1,5 @@
 import { styled } from "@/theme/stitches.config";
-import { Box } from '@/components/dom/box'
+import { Box } from '@/components/_common/box'
 
 const BaseCard = styled(Box, {
   borderRadius: '$md',

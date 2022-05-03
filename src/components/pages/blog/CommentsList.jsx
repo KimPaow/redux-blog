@@ -1,13 +1,13 @@
 import { motion, AnimatePresence } from 'framer-motion'
 
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
-import { Stack } from "@/components/dom/flex"
-import { Avatar } from '@/components/dom/avatar'
-import Text from '@/components/dom/text'
-import { Spacer } from '@/components/dom/flex'
-import { Link } from '@/components/dom/links'
-import Loader from '@/components/dom/loader'
-import Card from '@/components/dom/card'
+import { Stack } from "@/components/_common/flex"
+import { Avatar } from '@/components/_common/avatar'
+import Text from '@/components/_common/text'
+import { Spacer } from '@/components/_common/flex'
+import { Link } from '@/components/_common/links'
+import Loader from '@/components/_common/loader'
+import Card from '@/components/_common/card'
 
 import { useGetCommentsQuery } from '@/features/api/apiSlice'
 

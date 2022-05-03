@@ -1,4 +1,4 @@
-import { Box } from '@/components/dom/box'
+import { Box } from '@/components/_common/box'
 
 const Dom = ({ children, ...props }) => {
   return (

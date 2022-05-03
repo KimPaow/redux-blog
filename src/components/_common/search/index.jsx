@@ -1,6 +1,6 @@
-import { Stack } from '@/components/dom/flex'
-import Button from '@/components/dom/button'
-import Input from '@/components/dom/input'
+import { Stack } from '@/components/_common/flex'
+import Button from '@/components/_common/button'
+import Input from '@/components/_common/input'
 
 export const Search = ({ disabled, ...props }) => {
 

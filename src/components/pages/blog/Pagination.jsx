@@ -1,36 +1,18 @@
-import Grid from '@/components/dom/grid'
-import Stack from "@/components/dom/flex/stack"
-import { Spacer } from '@/components/dom/flex'
-import { Link } from '@/components/dom/links'
-import Text from '@/components/dom/text'
-import Card from '@/components/dom/card'
-import Box from '@/components/dom/box'
+import { Link } from '@/components/_common/links'
+import Text from '@/components/_common/text'
+import Card from '@/components/_common/card'
+import PaginationBase from '@/components/_common/pagination'
+
 import { PAGE_SIZE } from '@/utils/api'
 import { useGetPostsQuery } from '@/features/api/apiSlice'
-import { styled } from '@/theme'
-
-const ScrollCover = styled('div', {
-  position: 'absolute',
-  top: 0,
-  bottom: 0,
-  width: '$4',
-  zIndex: 100,
-
-  variants: {
-    side: {
-      left: {
-        left: 0,
-        linearGradient: 'to right, $colors$bg_body, rgba(0, 0, 0, 0)',
-      },
-      right: {
-        right: 0,
-        linearGradient: 'to left, $colors$bg_body, rgba(0, 0, 0, 0)',
-      }
-    }
-  }
-})
 
 export const Pagination = ({ query, currentPage }) => {
+  /** 
+   * TODO:
+   * This is super in-effective... We are fetching 5 posts in the parent
+   * and all pages here. It would be great if the api supported fetching just the total number of posts.
+   * In a real project this would be fixed.
+   */
   const {
     data: posts,
     isLoading,
@@ -46,7 +28,7 @@ export const Pagination = ({ query, currentPage }) => {
   let content = null
 
   if (isLoading) {
-    content = null
+    content = null // TODO: Loading state
   } else if (isSuccess) {
     content = paginationArr?.map((p) => <Link pagination scroll={true} active={p + 1 == currentPage} key={p} to={p === 0 ? '/' : `/?page=${p + 1}`}>
       {p + 1}
@@ -55,32 +37,15 @@ export const Pagination = ({ query, currentPage }) => {
     return <Card status="error"><Text status="error">{JSON.stringify(error, null, 2)}</Text></Card>
   }
 
-  return <Grid.Row css={{ marginTop: '$4', justifyContent: 'space-between', alignItems: 'center', maxWidth: '100vw', '@sm': { marginTop: '$5' } }}>
-    <Link pagination disabled={isFirstPage} to={`/?page=${currentPage - 1}`}>{"←"}</Link>
-    <Spacer basis={3} />
-    {content && (
-      <Box css={{ position: 'relative', flexGrow: 0, flexShrink: 1, maxWidth: '60vw', '@md': { maxWidth: 'none' } }}>
-        <ScrollCover side="left" />
-        <ScrollCover side="right" />
-        <Stack gap={1} css={{
-          overflowX: 'scroll',
-          paddingY: '$2',
-          position: 'relative',
-          paddingX: '$4',
-          '-ms-overflow-style': 'none',
-          'scrollbar-width': 'none',
-
-          '&::-webkit-scrollbar': {
-            display: 'none'
-          }
-        }}>
-          {content}
-        </Stack>
-      </Box>
-    )}
-    <Spacer basis={3} />
-    <Link pagination disabled={isLastPage} to={`/?page=${currentPage + 1}`}>{"→"}</Link>
-  </Grid.Row>
+  return (
+    <PaginationBase
+      disablePrev={isFirstPage}
+      disableNext={isLastPage}
+      currentPage={currentPage}
+    >
+      {content}
+    </PaginationBase>
+  )
 }
 
 export default Pagination

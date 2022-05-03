@@ -1,12 +1,5 @@
 import { styled } from '@/theme/stitches.config'
 
-export const Divider = styled('hr', {
-  width: '$5',
-  height: '1px',
-  border: 0,
-  background: '$text_muted',
-})
-
 const BaseText = styled('span', {
   fontSize: 'inherit',
   color: 'inherit',
@@ -167,36 +160,37 @@ const BaseText = styled('span', {
   }
 })
 
-export const Text = ({ h1, h2, h3, h4, h5, h6, body, quote, ...props }) => {
+export const Text = (props) => {
   if (!props.children) {
     return null
   };
 
-  let as = "span";
-  const _props = { h1, h2, h3, h4, h5, h6, body, quote }
+  let as = props.as;
 
   // properly apply the correct tag - span by default
-  if (!props.as) {
-    if (h1) {
+  // this is syntactic sugar, else you'd have to apply both 
+  // the style variant and the matching prop every time 
+  if (!as) {
+    if (props.h1) {
       as = "h1"
-    } else if (h2) {
+    } else if (props.h2) {
       as = "h2"
-    } else if (h3) {
+    } else if (props.h3) {
       as = "h3"
-    } else if (h4) {
+    } else if (props.h4) {
       as = "h4"
-    } else if (h5) {
+    } else if (props.h5) {
       as = "h5"
-    } else if (h6) {
+    } else if (props.h6) {
       as = "h6"
-    } else if (body) {
+    } else if (props.body) {
       as = "p"
-    } else if (quote) {
+    } else if (props.quote) {
       as = "blockquote"
     }
   }
 
-  return <BaseText as={props.as || as} {..._props} {...props} />;
+  return <BaseText as={as} {...props} />;
 };
 
 export default Text;

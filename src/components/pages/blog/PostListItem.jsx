@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
-import { Button } from "@/components/dom/button"
-import Stack from "@/components/dom/flex/stack"
-import Text from "@/components/dom/text"
-import { Avatar } from "@/components/dom/avatar"
-import { Spacer } from '@/components/dom/flex'
+import { Button } from "@/components/_common/button"
+import Stack from "@/components/_common/flex/stack"
+import Text from "@/components/_common/text"
+import { Avatar } from "@/components/_common/avatar"
+import { Spacer } from '@/components/_common/flex'
 import { CommentsList } from './CommentsList'
 
 // eslint-disable-next-line no-unused-vars

@@ -3,11 +3,11 @@ import { Provider } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import * as Fathom from 'fathom-client';
-import ErrorBoundary from '@/components/dom/error-boundary';
+import ErrorBoundary from '@/components/_common/error-boundary';
 import { darkTheme, lightTheme } from '@/theme/stitches.config';
 import { globalStyles } from "@/theme/globalStyles"
 import { usePrefersDarkMode } from "@/utils/hooks/usePrefersDarkMode"
-import Box from '@/components/dom/box';
+import Box from '@/components/_common/box';
 import store from '@/store';
 
 function MyApp({ Component, pageProps }) {
