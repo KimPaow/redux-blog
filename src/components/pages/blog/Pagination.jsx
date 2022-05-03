@@ -9,8 +9,8 @@ import { useGetPostsQuery } from '@/features/api/apiSlice'
 export const Pagination = ({ query, currentPage }) => {
   /** 
    * TODO:
-   * This is super in-effective... We are fetching 5 posts in the parent
-   * and all pages here. It would be great if the api supported fetching just the total number of posts.
+   * This is super in-effective... We are fetching 5 posts in the parent and all pages here. 
+   * It would be great if the api supported fetching just the total number of posts.
    * In a real project this would be fixed.
    */
   const {
