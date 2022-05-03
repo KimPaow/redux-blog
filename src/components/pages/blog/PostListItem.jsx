@@ -19,6 +19,7 @@ export const PostListItem = ({ title, body, userId, id, ...props }) => {
       as="article"
       column
       css={{ maxWidth: '700px' }}
+      aria-expanded={showComments}
       {...props}
     >
       <Text h4 color="headline">{capitalizedTitle}</Text>
