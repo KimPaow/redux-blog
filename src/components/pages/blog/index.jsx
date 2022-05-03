@@ -12,9 +12,9 @@ import Text from '@/components/_common/text'
 import Loader from '@/components/_common/loader'
 import Card from '@/components/_common/card'
 import Header from '@/components/_common/header'
-import Pagination from '@/components/_common/pagination'
 
 import PostListItem from '@/components/pages/blog/PostListItem'
+import Pagination from '@/components/pages/blog/Pagination'
 
 const handleSubmitSearch = ({ page, router, dispatch, event }) => {
   event.preventDefault()

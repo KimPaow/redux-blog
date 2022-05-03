@@ -34,9 +34,11 @@ export const Pagination = ({ query, currentPage }) => {
       {p + 1}
     </Link>)
   } else if (isError) {
+    console.log('error: ', isError)
     return <Card status="error"><Text status="error">{JSON.stringify(error, null, 2)}</Text></Card>
   }
 
+  console.log('content: ', content)
   return (
     <PaginationBase
       disablePrev={isFirstPage}
