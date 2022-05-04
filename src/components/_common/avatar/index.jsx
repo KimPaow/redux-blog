@@ -6,5 +6,16 @@ export const Avatar = styled('div', {
   borderRadius: '$full',
   objectFit: 'cover',
   backgroundSize: 'cover',
-  flexShrink: 0
+  flexShrink: 0,
+
+  variants: {
+    size: {
+      md: {
+        width: '$4',
+        height: '$4',
+      }
+    }
+  }
 })
+
+export default Avatar

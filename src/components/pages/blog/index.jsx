@@ -12,6 +12,10 @@ import Text from '@/components/_common/text'
 import Loader from '@/components/_common/loader'
 import Card from '@/components/_common/card'
 import Header from '@/components/_common/header'
+import Modal from '@/components/_common/modal'
+import Button from '@/components/_common/button'
+import LoginForm from '@/components/_common/forms/login'
+import Avatar from '@/components/_common/avatar'
 
 import PostListItem from '@/components/pages/blog/PostListItem'
 import Pagination from '@/components/pages/blog/Pagination'
@@ -50,6 +54,15 @@ export const BlogPage = () => {
     error
   } = useGetPostsQuery({ page, query: searchQuery })
 
+  const handleClick = (e) => {
+    e.preventDefault()
+    console.log('avatar click')
+  }
+
+  const handleLogin = ({ username, password }) => {
+    console.log('handleLogin', username, password)
+  }
+
   /**
    * TODO: append search query to router query so you can link 
    * to search results (probably won't do this for this assignment)
@@ -68,11 +81,20 @@ export const BlogPage = () => {
 
   return (
     <PageWrapper as="main">
-      <Header>
+      <Header gap={4}>
         <Search
           onSubmit={(event) => handleSubmitSearch({ event, page, router, dispatch })}
           css={styles.searchStyles}
         />
+        <Avatar
+          onClick={handleClick}
+          as="button"
+          size="md"
+          css={{ backgroundImage: "url('/avatar.jpeg')" }}
+        />
+        <Modal label="Login form" title="Login" button={<Button style="solid">Login</Button>}>
+          <LoginForm onSubmit={handleLogin} buttonText="Login" />
+        </Modal>
       </Header>
       <Stack gap={[4, 4, 5]} column>
         {content}

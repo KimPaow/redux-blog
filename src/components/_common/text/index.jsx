@@ -43,7 +43,7 @@ const BaseText = styled('span', {
     },
     label: {
       true: {
-        fontSize: '$1',
+        fontSize: '$2',
         fontFamily: '$body',
         fontWeight: '$body',
         lineHeight: '$body',
@@ -187,6 +187,8 @@ export const Text = (props) => {
       as = "p"
     } else if (props.quote) {
       as = "blockquote"
+    } else if (props.label) {
+      as = "label"
     }
   }
 

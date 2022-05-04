@@ -11,7 +11,6 @@ import Box from '@/components/_common/box';
 import store from '@/store';
 
 function MyApp({ Component, pageProps }) {
-  const [dark, setDark] = useState(false)
   const prefersDarkMode = usePrefersDarkMode();
   const router = useRouter();
 
@@ -33,7 +32,13 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   useEffect(() => {
-    setDark(prefersDarkMode)
+    if (prefersDarkMode) {
+      document.body.classList.remove(lightTheme)
+      document.body.classList.add(darkTheme)
+    } else {
+      document.body.classList.remove(darkTheme)
+      document.body.classList.add(lightTheme)
+    }
   }, [prefersDarkMode])
 
   globalStyles();
@@ -41,7 +46,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ErrorBoundary>
       <Provider store={store}>
-        <div data-app className={dark ? darkTheme : lightTheme}>
+        <div data-app>
           <Box css={{ backgroundColor: '$bg_body', minHeight: '100vh' }}>
             <Component {...pageProps} />
           </Box>

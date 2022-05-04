@@ -14,6 +14,12 @@ const BaseCard = styled(Box, {
   padding: '$3',
 
   variants: {
+    style: {
+      solid: {
+        backgroundColor: '$bg_body',
+        backdropFilter: 'none'
+      }
+    },
     status: {
       error: {
         backgroundColor: '$red900',

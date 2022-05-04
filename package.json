@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reach/dialog": "^0.17.0",
+    "@reach/menu-button": "^0.17.0",
+    "@reach/visually-hidden": "^0.17.0",
     "@reduxjs/toolkit": "^1.8.0",
     "@stitches/react": "^1.2.7",
     "fathom-client": "^3.4.1",

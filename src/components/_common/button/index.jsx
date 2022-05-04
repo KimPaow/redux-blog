@@ -10,7 +10,7 @@ export const Button = styled('button', {
   textAlign: 'center',
 
   '&:focus': {
-    boxShadow: '0 0 0 1px $colors$primary400'
+    boxShadow: '0 0 0 2px $colors$primary400'
   },
 
   variants: {
