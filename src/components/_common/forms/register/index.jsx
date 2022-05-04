@@ -8,7 +8,7 @@ import { Form } from "@/components/_common/forms/form"
  * A form containing input fields for username and password
  * @param {function} onSubmit Callback that receives a username and password value 
  */
-export const LoginForm = ({ onSubmit, buttonText, ...props }) => {
+export const RegisterForm = ({ onSubmit, buttonText, ...props }) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     const { username, password } = event.target.elements
@@ -34,4 +34,4 @@ export const LoginForm = ({ onSubmit, buttonText, ...props }) => {
   )
 }
 
-export default LoginForm
+export default RegisterForm

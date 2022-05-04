@@ -5,6 +5,7 @@ export const Header = styled(Stack, {
   paddingY: '$4',
   marginBottom: '$4',
   borderBottom: '1px solid $text_muted',
+  alignItems: 'center',
 
   '@sm': {
     marginBottom: '$5',

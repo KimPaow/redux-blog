@@ -1,47 +1,19 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 
 import { selectSearchQuery } from '@/features/search/searchSlice'
-import { setSearchQuery } from '@/features/search/searchSlice'
 import { useGetPostsQuery } from '@/features/api/apiSlice'
 
-import PageWrapper from '@/components/_common/pagewrapper'
+import Layout from '@/components/_common/layout'
 import Stack from '@/components/_common/flex/stack'
-import Search from '@/components/_common/search'
 import Text from '@/components/_common/text'
 import Loader from '@/components/_common/loader'
 import Card from '@/components/_common/card'
-import Header from '@/components/_common/header'
-import Modal from '@/components/_common/modal'
-import Button from '@/components/_common/button'
-import LoginForm from '@/components/_common/forms/login'
-import Avatar from '@/components/_common/avatar'
 
 import PostListItem from '@/components/pages/blog/PostListItem'
 import Pagination from '@/components/pages/blog/Pagination'
 
-const handleSubmitSearch = ({ page, router, dispatch, event }) => {
-  event.preventDefault()
-  dispatch(setSearchQuery(event?.target?.elements?.search?.value))
-
-  if (page !== 1) {
-    router.push('/', null, { shallow: true })
-  }
-}
-
-const styles = {
-  searchStyles: {
-    flex: 1,
-    marginLeft: 'auto',
-
-    '@sm': {
-      flexGrow: '0'
-    }
-  }
-}
-
 export const BlogPage = () => {
-  const dispatch = useDispatch()
   const searchQuery = useSelector(selectSearchQuery)
   const router = useRouter()
   const page = Number(router?.query?.page) || 1
@@ -53,15 +25,6 @@ export const BlogPage = () => {
     isError,
     error
   } = useGetPostsQuery({ page, query: searchQuery })
-
-  const handleClick = (e) => {
-    e.preventDefault()
-    console.log('avatar click')
-  }
-
-  const handleLogin = ({ username, password }) => {
-    console.log('handleLogin', username, password)
-  }
 
   /**
    * TODO: append search query to router query so you can link 
@@ -80,27 +43,12 @@ export const BlogPage = () => {
   }
 
   return (
-    <PageWrapper as="main">
-      <Header gap={4}>
-        <Search
-          onSubmit={(event) => handleSubmitSearch({ event, page, router, dispatch })}
-          css={styles.searchStyles}
-        />
-        <Avatar
-          onClick={handleClick}
-          as="button"
-          size="md"
-          css={{ backgroundImage: "url('/avatar.jpeg')" }}
-        />
-        <Modal label="Login form" title="Login" button={<Button style="solid">Login</Button>}>
-          <LoginForm onSubmit={handleLogin} buttonText="Login" />
-        </Modal>
-      </Header>
+    <Layout as="main">
       <Stack gap={[4, 4, 5]} column>
         {content}
       </Stack>
       <Pagination currentPage={page} query={searchQuery} />
-    </PageWrapper>
+    </Layout>
   )
 }
 
