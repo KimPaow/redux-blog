@@ -2,6 +2,7 @@ import { styled } from '@/theme/stitches.config'
 
 export const Button = styled('button', {
   fontSize: '$body',
+  fontWeight: '$medium',
   lineHeight: 'inherit',
   padding: '$2 $3',
   borderRadius: '$md',

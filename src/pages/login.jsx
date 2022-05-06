@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import LoginForm from '@/components/_common/forms/login'
+import LoginForm from '@/components/pages/login/login-form'
 import Layout from '@/components/_common/layout'
 import Text from '@/components/_common/text'
 import { Stack } from '@/components/_common/flex'

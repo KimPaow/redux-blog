@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import RegisterForm from '@/components/_common/forms/register'
+import RegisterForm from '@/components/pages/register/register-form'
 import Layout from '@/components/_common/layout'
 import Text from '@/components/_common/text'
 import { Stack } from '@/components/_common/flex'

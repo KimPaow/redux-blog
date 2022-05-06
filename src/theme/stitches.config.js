@@ -209,16 +209,5 @@ export const lightTheme = createTheme('light-theme', {
     card_bg_disabled: "$black_alpha100",
     card_bg_hover: "$black_alpha100",
     card_border: "$black_alpha50",
-
-    // primary50: "$violet50",
-    // primary100: "$violet100",
-    // primary200: "#E1A19E",
-    // primary300: "#D57C77",
-    // primary400: "#C85650",
-    // primary500: "#AD3C36",
-    // primary600: "#882F2A",
-    // primary700: "#61221E",
-    // primary800: "#3A1412",
-    // primary900: "$violet900",
   },
 });

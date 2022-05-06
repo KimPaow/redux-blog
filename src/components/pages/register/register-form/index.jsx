@@ -21,15 +21,24 @@ export const RegisterForm = ({ onSubmit, buttonText, ...props }) => {
 
   return (
     <Form onSubmit={handleSubmit} {...props}>
-      <Stack column>
-        <Text label htmlFor="username">Username</Text>
-        <Input id="username" />
+      <Stack gap={3} justify="stretch">
+        <Stack gap={1} column css={{ flex: 1 }}>
+          <Text label htmlFor="firstName">First Name</Text>
+          <Input id="firstName" placeholder="First Name" />
+        </Stack>
+        <Stack gap={1} column css={{ flex: 1 }}>
+          <Text label htmlFor="lastName">Last Name</Text>
+          <Input id="lastName" placeholder="Last Name" />
+        </Stack></Stack>
+      <Stack gap={1} column>
+        <Text label htmlFor="email">Email address</Text>
+        <Input id="email" placeholder="Email address" />
       </Stack>
-      <Stack column>
+      <Stack gap={1} column>
         <Text label htmlFor="password">Password</Text>
-        <Input id="password" type="password" />
+        <Input id="password" placeholder="Password" type="password" />
       </Stack>
-      <Button style="solid" type="submit" css={{ minHeight: '40px', marginTop: '$3' }}>{buttonText}</Button>
+      <Button style="solid" type="submit" css={{ minHeight: '46px', marginTop: '$3' }}>{buttonText}</Button>
     </Form>
   )
 }

@@ -45,7 +45,7 @@ const BaseText = styled('span', {
       true: {
         fontSize: '$2',
         fontFamily: '$body',
-        fontWeight: '$body',
+        fontWeight: '$medium',
         lineHeight: '$body',
       }
     },
