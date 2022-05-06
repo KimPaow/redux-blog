@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
-import searchReducer from '@/features/search/searchSlice'
-import { apiSlice } from '@/features/api/apiSlice'
+import searchReducer from '@/slices/search'
+import { blogSlice } from '@/slices/blog'
 
 // store for global app state
 export default configureStore({
   reducer: {
     search: searchReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer
+    [blogSlice.reducerPath]: blogSlice.reducer
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(apiSlice.middleware)
+    getDefaultMiddleware().concat(blogSlice.middleware)
 })

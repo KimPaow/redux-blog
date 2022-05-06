@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 
-import { selectSearchQuery } from '@/features/search/searchSlice'
-import { useGetPostsQuery } from '@/features/api/apiSlice'
+import { selectSearchQuery } from '@/slices/search'
+import { useGetPostsQuery } from '@/slices/blog'
 
 import Layout from '@/components/_common/layout'
 import Stack from '@/components/_common/flex/stack'

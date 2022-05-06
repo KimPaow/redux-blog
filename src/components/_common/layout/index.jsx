@@ -7,7 +7,7 @@ import UserMenu from '@/components/_common/usermenu'
 import Search from '@/components/_common/search'
 import { Link } from '@/components/_common/links'
 
-import { setSearchQuery } from '@/features/search/searchSlice'
+import { setSearchQuery } from '@/slices/search'
 
 export const Wrapper = styled('div', {
   display: 'flex',

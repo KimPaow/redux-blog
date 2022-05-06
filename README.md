@@ -14,7 +14,7 @@ From the root, follow these steps:
 ## Architecture
 
 - `/components/` - contains all the UI components.
-- `/features/` - contains state management for the different features and logic for fetching data.
+- `/slices/` - contains state management for the different features and logic for fetching data.
 - `/pages/` - the app entrypoint is in `_app`, and the landingpage is `index.jsx`.
 - `/theme/` - contains the design tokens and other theme data.
 - `/utils/` - a collection of hooks and other helpers.

@@ -9,7 +9,7 @@ import { Link } from '@/components/_common/links'
 import Loader from '@/components/_common/loader'
 import Card from '@/components/_common/card'
 
-import { useGetCommentsQuery } from '@/features/api/apiSlice'
+import { useGetCommentsQuery } from '@/slices/blog'
 
 const CommentListItem = ({ name, email, body }) => {
   return <Stack
