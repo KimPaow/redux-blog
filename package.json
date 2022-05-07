@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.8.8",
     "@reach/dialog": "^0.17.0",
     "@reach/menu-button": "^0.17.0",
     "@reach/visually-hidden": "^0.17.0",
@@ -24,10 +25,13 @@
     "mongoose": "^6.3.2",
     "next": "12.1.1",
     "react": "17.0.2",
+    "react-cookie": "^4.1.1",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.30.0",
     "react-loader-spinner": "^6.0.0-0",
     "react-redux": "^7.2.6",
-    "redux": "^4.1.2"
+    "redux": "^4.1.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "eslint": "8.12.0",

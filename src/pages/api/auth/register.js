@@ -1,15 +1,13 @@
-const jwtDecode = require('jwt-decode');
-const User = require('../../models/User');
-const mongoose = require('mongoose');
+import jwtDecode from 'jwt-decode';
 
-const {
-  createToken,
-  hashPassword,
-} = require('../../utils/api/auth');
+import dbConnect from '../../../db/connect'
+import User from '../../../db/models/User'
+import { createToken, hashPassword } from '../../../utils/api/auth'
 
-const handler = async (req, res) => {
+export default async function handler(req, res) {
+  await dbConnect()
+
   try {
-    console.log('req body:', req.body)
     const { email, firstName, lastName } = req.body;
 
     const hashedPassword = await hashPassword(
@@ -73,17 +71,3 @@ const handler = async (req, res) => {
     });
   }
 }
-
-export default handler
-
-async function connect() {
-  try {
-    console.log('process.env.ATLAS_URL', process.env.ATLAS_URL);
-    mongoose.Promise = global.Promise;
-    await mongoose.connect(process.env.ATLAS_URL, {});
-  } catch (err) {
-    console.log('Mongoose error', err);
-  }
-}
-
-connect();

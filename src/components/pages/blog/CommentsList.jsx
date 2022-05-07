@@ -9,7 +9,7 @@ import { Link } from '@/components/_common/links'
 import Loader from '@/components/_common/loader'
 import Card from '@/components/_common/card'
 
-import { useGetCommentsQuery } from '@/slices/blog'
+import { useGetCommentsQuery } from '@/redux/api/blogApi'
 
 const CommentListItem = ({ name, email, body }) => {
   return <Stack

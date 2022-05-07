@@ -22,7 +22,12 @@ const BaseCard = styled(Box, {
     },
     status: {
       error: {
-        backgroundColor: '$red900',
+        backgroundColor: '$status_error_bg',
+        color: '$status_error_text'
+      },
+      success: {
+        backgroundColor: '$status_success_bg',
+        color: '$status_success_text'
       }
     }
   }

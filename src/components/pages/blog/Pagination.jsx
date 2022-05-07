@@ -4,7 +4,7 @@ import Card from '@/components/_common/card'
 import PaginationBase from '@/components/_common/pagination'
 
 import { PAGE_SIZE } from '@/utils/api'
-import { useGetPostsQuery } from '@/slices/blog'
+import { useGetPostsQuery } from '@/redux/api/blogApi'
 
 export const Pagination = ({ query, currentPage }) => {
   /** 

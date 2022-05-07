@@ -8,7 +8,7 @@ import { darkTheme, lightTheme } from '@/theme/stitches.config';
 import { globalStyles } from "@/theme/globalStyles"
 import { usePrefersDarkMode } from "@/utils/hooks/usePrefersDarkMode"
 import Box from '@/components/_common/box';
-import store from '@/store';
+import store from '@/redux/store';
 
 function MyApp({ Component, pageProps }) {
   const prefersDarkMode = usePrefersDarkMode();

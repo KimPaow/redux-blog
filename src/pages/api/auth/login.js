@@ -1,10 +1,7 @@
-const jwtDecode = require('jwt-decode');
-const User = require('../../models/User');
+import jwtDecode from 'jwt-decode';
 
-const {
-  createToken,
-  verifyPassword
-} = require('../../utils/api/auth');
+import User from '../../../db/models/User'
+import { createToken, verifyPassword } from '../../../utils/api/auth'
 
 const handler = async (req, res) => {
   try {
@@ -26,6 +23,7 @@ const handler = async (req, res) => {
     );
 
     if (passwordValid) {
+      // eslint-disable-next-line no-unused-vars
       const { password, bio, ...rest } = user;
       const userInfo = Object.assign({}, { ...rest });
 
@@ -46,7 +44,6 @@ const handler = async (req, res) => {
       });
     }
   } catch (err) {
-    console.log(err);
     return res
       .status(400)
       .json({ message: 'Something went wrong.' });

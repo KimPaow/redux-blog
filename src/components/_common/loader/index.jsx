@@ -1,5 +1,5 @@
 import { InfinitySpin } from 'react-loader-spinner'
-import Box from '../box'
+import Box from '@/components/_common/box'
 
 export const Loader = ({ color, ...props }) => {
   return (

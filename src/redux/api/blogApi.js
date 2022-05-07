@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { buildPostsEndpoint } from '@/utils/api'
 
-export const blogSlice = createApi({
-  reducerPath: 'api',
+export const blogApi = createApi({
+  reducerPath: 'blog',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://jsonplaceholder.typicode.com' }),
   endpoints: builder => ({
     getPosts: builder.query({
@@ -14,4 +14,4 @@ export const blogSlice = createApi({
   })
 })
 
-export const { useGetPostsQuery, useGetCommentsQuery } = blogSlice
+export const { useGetPostsQuery, useGetCommentsQuery } = blogApi

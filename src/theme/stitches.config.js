@@ -190,6 +190,11 @@ export const darkTheme = createTheme('dark-theme', {
     card_bg_disabled: "$white_alpha100",
     card_bg_hover: "$white_alpha100",
     card_border: "$white_alpha50",
+
+    status_success_bg: "$green900",
+    status_success_text: "$green400",
+    status_error_bg: "$red900",
+    status_error_text: "$red400",
   },
 });
 
@@ -209,5 +214,10 @@ export const lightTheme = createTheme('light-theme', {
     card_bg_disabled: "$black_alpha100",
     card_bg_hover: "$black_alpha100",
     card_border: "$black_alpha50",
+
+    status_success_bg: "$green700",
+    status_success_text: "$green200",
+    status_error_bg: "$red700",
+    status_error_text: "$red200",
   },
 });

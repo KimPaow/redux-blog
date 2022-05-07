@@ -41,6 +41,12 @@ export const Button = styled('button', {
         },
       },
     },
+    disabled: {
+      true: {
+        opacity: 0.8,
+        cursor: 'not-allowed',
+      }
+    }
   }
 })
 
