@@ -1,14 +1,22 @@
-// import "@reach/menu-button/styles.css";
+import { useSelector, useDispatch } from 'react-redux'
 import {
   Menu,
   MenuList,
   MenuButton,
   MenuLink,
+  MenuItem
 } from "@reach/menu-button";
 import VisuallyHidden from '@reach/visually-hidden'
+
 import { Link } from '@/components/_common/links'
 import Avatar from '@/components/_common/avatar'
-import { styled, keyframes } from "@/theme/stitches.config";
+import Text from "@/components/_common/text"
+import ClientOnly from '@/components/_common/client-only'
+import { styled, keyframes } from "@/theme/stitches.config"
+import { selectUserData, selectIsAdmin } from '@/redux/slices/userSlice'
+import { useIsAuthenticated } from '@/utils/hooks/useIsAuthenticated'
+import { Stack } from '@/components/_common/flex'
+import { logout } from '@/redux/slices/userSlice'
 
 const slideDown = keyframes({
   '0%': {
@@ -23,6 +31,9 @@ const slideDown = keyframes({
 
 const StyledMenuButton = styled(MenuButton, {
   padding: 0,
+  display: 'flex',
+  gap: '$2',
+  alignItems: 'center'
 })
 
 const StyledMenuList = styled(MenuList, {
@@ -56,31 +67,72 @@ const StyledMenuList = styled(MenuList, {
   }
 })
 
-export const UserMenu = () => {
+const navItems = [
+  {
+    label: 'Admin',
+    path: '/admin',
+    allowedRoles: ['admin']
+  },
+  {
+    label: 'Account',
+    path: '/account',
+    allowedRoles: ['user', 'admin']
+  },
+  {
+    label: 'Settings',
+    path: '/settings',
+    allowedRoles: ['user', 'admin']
+  },
+  {
+    label: 'Users',
+    path: '/users',
+    allowedRoles: ['admin']
+  },
+]
 
-  const handleClick = (e) => {
-    e.preventDefault()
-    console.log('avatar click')
+const AuthenticatedMenu = () => {
+  const dispatch = useDispatch()
+  const userData = useSelector(selectUserData)
+  const { firstName } = userData || {}
+
+  return <ClientOnly as={Menu}>
+    <StyledMenuButton>
+      <Avatar
+        aria-hidden
+        size="md"
+        css={{ backgroundImage: "url('/avatar.jpeg')" }}
+      />
+      <VisuallyHidden>Menu</VisuallyHidden>
+      <Text body aria-hidden="true">{firstName}</Text>
+    </StyledMenuButton>
+    <StyledMenuList className="slide-down">
+      <MenuItem onSelect={() => dispatch(logout())}>Logout</MenuItem>
+      {navItems.map((navItem, i) => (
+        navItem.allowedRoles.includes(userData?.role) ? (
+          <Link as={MenuLink} to={navItem.path} key={i}>{navItem.label}</Link>
+        ) : null
+      ))}
+    </StyledMenuList>
+  </ClientOnly>
+}
+
+const UnauthenticatedMenu = () => {
+  return <ClientOnly as={Stack} align="center">
+    <Link underline to="/register">Register</Link>
+    <Text css={{ marginX: '$3' }}>|</Text>
+    <Link underline to="/login">Login</Link>
+  </ClientOnly>
+}
+
+export const UserMenu = () => {
+  const isAuthenticated = useIsAuthenticated()
+
+  if (isAuthenticated) {
+    return <AuthenticatedMenu />
   }
 
   return (
-    <>
-      <Menu>
-        <StyledMenuButton>
-          <Avatar
-            aria-hidden
-            onClick={handleClick}
-            size="md"
-            css={{ backgroundImage: "url('/avatar.jpeg')" }}
-          />
-          <VisuallyHidden>Menu</VisuallyHidden>
-        </StyledMenuButton>
-        <StyledMenuList className="slide-down">
-          <Link as={MenuLink} to="register">Register</Link>
-          <Link as={MenuLink} to="login">Login</Link>
-        </StyledMenuList>
-      </Menu>
-    </>
+    <UnauthenticatedMenu />
   )
 }
 

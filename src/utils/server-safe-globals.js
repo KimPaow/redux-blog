@@ -18,6 +18,10 @@ const windowShim = {
   navigator: {
     userAgent: {}
   },
+  localStorage: {
+    getItem: function() { },
+    setItem: function() { },
+  },
 };
 
 const documentShim = {

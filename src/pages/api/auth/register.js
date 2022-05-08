@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       firstName,
       lastName,
       password: hashedPassword,
-      role: 'admin'
+      role: 'user'
     };
 
     const existingEmail = await User.findOne({

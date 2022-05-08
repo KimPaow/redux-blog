@@ -1,12 +1,16 @@
 import jwtDecode from 'jwt-decode';
 
+import dbConnect from '../../../db/connect'
 import User from '../../../db/models/User'
 import { createToken, verifyPassword } from '../../../utils/api/auth'
 
 const handler = async (req, res) => {
+  await dbConnect()
+
   try {
     const { email, password } = req.body;
 
+    console.log('req.body:', req.body)
     const user = await User.findOne({
       email
     }).lean();
@@ -44,6 +48,7 @@ const handler = async (req, res) => {
       });
     }
   } catch (err) {
+    console.log('err:', err)
     return res
       .status(400)
       .json({ message: 'Something went wrong.' });

@@ -1,13 +1,13 @@
-
 import { Provider } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import * as Fathom from 'fathom-client';
+
 import ErrorBoundary from '@/components/_common/error-boundary';
+import { AppLayout } from '@/components/_common/layout/AppLayout';
 import { darkTheme, lightTheme } from '@/theme/stitches.config';
 import { globalStyles } from "@/theme/globalStyles"
 import { usePrefersDarkMode } from "@/utils/hooks/usePrefersDarkMode"
-import Box from '@/components/_common/box';
 import store from '@/redux/store';
 
 function MyApp({ Component, pageProps }) {
@@ -46,11 +46,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <ErrorBoundary>
       <Provider store={store}>
-        <div data-app>
-          <Box css={{ backgroundColor: '$bg_body', minHeight: '100vh' }}>
-            <Component {...pageProps} />
-          </Box>
-        </div>
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
       </Provider>
     </ErrorBoundary>
   )
