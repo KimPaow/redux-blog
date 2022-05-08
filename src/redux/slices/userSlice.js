@@ -5,6 +5,7 @@ const initialState = {
   token: undefined,
   userInfo: undefined,
   expiresAt: undefined,
+  all: null
 };
 
 export const userSlice = createSlice({
@@ -22,6 +23,9 @@ export const userSlice = createSlice({
       state.token = token;
       state.userInfo = user;
       state.expiresAt = expiresAt;
+    },
+    setUsers: (state, action) => {
+      state.all = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -49,7 +53,7 @@ export const userSlice = createSlice({
 
 export default userSlice.reducer;
 
-export const { logout, setUser } = userSlice.actions;
+export const { logout, setUser, setUsers } = userSlice.actions;
 
 export const selectUserData = state => {
   return state.user.userInfo
