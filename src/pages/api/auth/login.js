@@ -3,6 +3,7 @@ import jwtDecode from 'jwt-decode';
 import dbConnect from '../../../db/connect'
 import User from '../../../db/models/User'
 import { createToken, verifyPassword } from '../../../utils/api/auth'
+import { cookies } from '../../../utils/api/middlewares'
 
 const handler = async (req, res) => {
   await dbConnect()
@@ -10,7 +11,6 @@ const handler = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    console.log('req.body:', req.body)
     const user = await User.findOne({
       email
     }).lean();
@@ -36,6 +36,10 @@ const handler = async (req, res) => {
       const decodedToken = jwtDecode(token);
       const expiresAt = decodedToken.exp;
 
+      res.cookie('token', token, {
+        httpOnly: true
+      })
+
       res.json({
         message: 'Authentication successful!',
         token,
@@ -48,11 +52,10 @@ const handler = async (req, res) => {
       });
     }
   } catch (err) {
-    console.log('err:', err)
     return res
       .status(400)
       .json({ message: 'Something went wrong.' });
   }
 }
 
-export default handler
+export default cookies(handler)

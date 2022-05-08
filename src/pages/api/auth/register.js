@@ -3,8 +3,9 @@ import jwtDecode from 'jwt-decode';
 import dbConnect from '../../../db/connect'
 import User from '../../../db/models/User'
 import { createToken, hashPassword } from '../../../utils/api/auth'
+import { cookies } from '../../../utils/api/middlewares'
 
-export default async function handler(req, res) {
+const handler = async (req, res) => {
   await dbConnect()
 
   try {
@@ -54,6 +55,10 @@ export default async function handler(req, res) {
         role
       };
 
+      res.cookie('token', token, {
+        httpOnly: true
+      })
+
       return res.json({
         message: 'User created!',
         token,
@@ -71,3 +76,5 @@ export default async function handler(req, res) {
     });
   }
 }
+
+export default cookies(handler)

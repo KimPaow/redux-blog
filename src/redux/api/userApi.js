@@ -38,7 +38,7 @@ export const userApi = createApi({
     getAllUsers: builder.query({
       query() {
         return {
-          url: '/all',
+          url: '/everyone',
           credentials: 'include',
         }
       },
@@ -51,8 +51,16 @@ export const userApi = createApi({
           console.error('getAllUsers error: ', error)
         }
       },
+    }),
+    setUserRole: builder.mutation({
+      query: (payload) => ({
+        url: '/user-role',
+        method: 'PATCH',
+        body: payload,
+        credentials: 'include',
+      })
     })
   }),
 });
 
-export const { useGetMeQuery, useGetAllUsersQuery } = userApi
+export const { useGetMeQuery, useGetAllUsersQuery, useSetUserRoleMutation } = userApi

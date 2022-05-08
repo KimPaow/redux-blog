@@ -39,7 +39,7 @@ export const BlogPage = () => {
   } else if (isSuccess) {
     content = posts?.map(({ id, ...post }) => <PostListItem data-id={id} key={id} id={id} {...post} />)
   } else if (isError) {
-    content = <Card status="error"><Text status="error">{JSON.stringify(error, null, 2)}</Text></Card>
+    content = <Card status="error"><Text body status="error">{JSON.stringify(error, null, 2)}</Text></Card>
   }
 
   return (

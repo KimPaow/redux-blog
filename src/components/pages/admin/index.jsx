@@ -26,16 +26,16 @@ export const AdminPage = () => {
   } else if (isSuccess) {
     content = data?.users?.map(({ _id, firstName, lastName }) => <Text key={_id}>{`${firstName} ${lastName}`}</Text>)
   } else if (isError) {
-    content = <Card status="error"><Text status="error">{JSON.stringify(error, null, 2)}</Text></Card>
+    content = <Card status="error"><Text body status="error">{JSON.stringify(error, null, 2)}</Text></Card>
   }
 
   return isAllowed ? (
     <Layout as="main">
-      <Stack gap={[4, 4, 5]} column>
+      <Stack gap={[3, 4]} column>
         <Text h1>Admin Page</Text>
         <Text body>This page is protected and only accessible for users with the role &apos;admin&apos;</Text>
         <Text h3>All users:</Text>
-        {content}
+        <Stack column gap={3}>{content}</Stack>
       </Stack>
     </Layout>
   ) : null

@@ -22,9 +22,9 @@ export default function Login() {
   if (isLoading) {
     content = <Loader />
   } else if (isSuccess) {
-    content = <Card status="success"><Text status="success">Login successful!</Text></Card>
+    content = <Card status="success"><Text body status="success">Login successful!</Text></Card>
   } else if (isError) {
-    content = <Card status="error"><Text status="error">{error?.data.message}</Text></Card>
+    content = <Card status="error"><Text body status="error">{error?.data.message}</Text></Card>
   }
 
   return (

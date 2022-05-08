@@ -78,11 +78,6 @@ const navItems = [
     path: '/account',
     allowedRoles: ['user', 'admin']
   },
-  {
-    label: 'Settings',
-    path: '/settings',
-    allowedRoles: ['user', 'admin']
-  },
 ]
 
 const AuthenticatedMenu = () => {

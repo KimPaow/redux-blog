@@ -22,7 +22,7 @@ export default function Register() {
   if (isLoading) {
     content = <Loader />
   } else if (isSuccess) {
-    content = <Card status="success"><Text status="success">User created - You can now log in!</Text></Card>
+    content = <Card status="success"><Text status="success">User created!</Text></Card>
   } else if (isError) {
     content = <Card status="error"><Text status="error">{error?.data?.message}</Text></Card>
   }

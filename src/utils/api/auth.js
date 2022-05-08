@@ -11,8 +11,8 @@ const createToken = user => {
       sub: user._id,
       email: user.email,
       role: user.role,
-      iss: 'api.orbit',
-      aud: 'api.orbit'
+      iss: 'reduxblog.bjorkman.kim',
+      aud: 'reduxblog.bjorkman.kim'
     },
     process.env.JWT_SECRET,
     { algorithm: 'HS256', expiresIn: '1h' }
@@ -47,23 +47,8 @@ const verifyPassword = (
   return bcrypt.compare(passwordAttempt, hashedPassword);
 };
 
-const requireAdmin = (req, res, next) => {
-  if (!req.user) {
-    return res.status(401).json({
-      message: 'There was a problem authorizing the request'
-    });
-  }
-  if (req.user.role !== 'admin') {
-    return res
-      .status(401)
-      .json({ message: 'Insufficient role' });
-  }
-  next();
-};
-
 module.exports = {
   createToken,
   hashPassword,
   verifyPassword,
-  requireAdmin
 };

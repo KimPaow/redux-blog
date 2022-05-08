@@ -30,11 +30,10 @@ const reHydrateStore = () => {
         token,
         expiresAt: Number(expiresAt),
       }
-    }; // re-hydrate the store
+    };
   }
 };
 
-// store for global app state
 export default configureStore({
   reducer: {
     search: searchReducer,

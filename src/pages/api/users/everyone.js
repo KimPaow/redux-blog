@@ -1,7 +1,12 @@
-
 import dbConnect from '../../../db/connect'
 import User from '../../../db/models/User'
-import { runMiddleware, cors, requireAuth } from '../../../utils/api/middlewares'
+import {
+  runMiddleware,
+  cors,
+  requireAuth,
+  attachUser,
+  requireAdmin
+} from '../../../utils/api/middlewares'
 
 const handler = async (req, res) => {
   if (req.method !== 'GET') {
@@ -10,6 +15,8 @@ const handler = async (req, res) => {
 
   await runMiddleware(req, res, cors)
   await runMiddleware(req, res, requireAuth)
+  await runMiddleware(req, res, attachUser)
+  await runMiddleware(req, res, requireAdmin)
   await dbConnect()
 
   try {

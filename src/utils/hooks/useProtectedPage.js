@@ -18,7 +18,7 @@ export const useProtectedPage = (allowedRoles) => {
       router.replace("/login");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [isAuthenticated, userData])
 
   return isAllowed
 }
