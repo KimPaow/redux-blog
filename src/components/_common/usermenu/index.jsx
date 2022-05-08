@@ -43,19 +43,19 @@ const StyledMenuList = styled(MenuList, {
   alignItems: 'stretch',
   gap: '$2',
   whiteSpace: 'nowrap',
-  backgroundColor: '$bg_body',
+  backgroundColor: '$card_bg_solid',
   outline: 'none',
   fontSize: '85%',
   borderWidth: '1px',
   borderStyle: "solid",
   borderColor: '$card_border',
-  borderRadius: '$sm',
-  padding: '$2',
+  borderRadius: '$lg',
+  padding: '$1',
   marginTop: '$2',
 
   '[role="menuitem"]': {
     padding: '$2 $3',
-    borderRadius: '$sm',
+    borderRadius: '$md',
 
     '&:hover': {
       backgroundColor: '$card_bg',

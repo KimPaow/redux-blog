@@ -187,6 +187,7 @@ export const darkTheme = createTheme('dark-theme', {
     bg_body: "#060606",
 
     card_bg: "$white_alpha100",
+    card_bg_solid: "$neutral900",
     card_bg_disabled: "$white_alpha100",
     card_bg_hover: "$white_alpha100",
     card_border: "$white_alpha50",
@@ -211,6 +212,7 @@ export const lightTheme = createTheme('light-theme', {
     bg_body: "$gray100",
 
     card_bg: "$black_alpha100",
+    card_bg_solid: "$gray100",
     card_bg_disabled: "$black_alpha100",
     card_bg_hover: "$black_alpha100",
     card_border: "$black_alpha50",
