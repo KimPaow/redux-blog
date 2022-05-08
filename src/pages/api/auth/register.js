@@ -3,10 +3,11 @@ import jwtDecode from 'jwt-decode';
 import dbConnect from '../../../db/connect'
 import User from '../../../db/models/User'
 import { createToken, hashPassword } from '../../../utils/api/auth'
-import { cookies, csurfProtection, runMiddleware } from '../../../utils/api/middlewares'
+import { cookies, cors, csurfProtection, runMiddleware } from '../../../utils/api/middlewares'
 
 const handler = async (req, res) => {
-  // await runMiddleware(req, res, csurfProtection)
+  await runMiddleware(req, res, cors)
+  await runMiddleware(req, res, csurfProtection)
   await dbConnect()
 
   try {

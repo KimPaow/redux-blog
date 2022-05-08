@@ -5,7 +5,8 @@ const initialState = {
   token: undefined,
   userInfo: undefined,
   expiresAt: undefined,
-  all: null
+  all: null,
+  csurf: null,
 };
 
 export const userSlice = createSlice({
@@ -27,6 +28,9 @@ export const userSlice = createSlice({
     setUsers: (state, action) => {
       state.all = action.payload;
     },
+    setCsurf: (state, action) => {
+      state.csurf = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -53,14 +57,14 @@ export const userSlice = createSlice({
 
 export default userSlice.reducer;
 
-export const { logout, setUser, setUsers } = userSlice.actions;
+export const { logout, setUser, setUsers, setCsurf } = userSlice.actions;
 
 export const selectUserData = state => {
   return state.user.userInfo
 }
 
 export const selectIsAuthenticated = state => {
-  if (!state.user.token || !state.user.expiresAt) {
+  if (!state.user.userInfo || !state.user.expiresAt) {
     return false
   }
   return new Date().getTime() / 1000 < state.user.expiresAt

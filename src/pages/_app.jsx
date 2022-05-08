@@ -41,6 +41,7 @@ function MyApp({ Component, pageProps }) {
     }
   }, [prefersDarkMode])
 
+
   globalStyles();
 
   return (

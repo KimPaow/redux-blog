@@ -20,10 +20,7 @@ export const requireAuth = expressjwt({
   algorithms: ["HS256"],
   issuer: 'reduxblog.bjorkman.kim',
   audience: 'reduxblog.bjorkman.kim',
-  getToken: req => {
-    console.log('requireAuth getToken req.cookies: ', req.cookies)
-    return req.cookies.token
-  }
+  getToken: req => req.cookies.token
 });
 
 /**
@@ -50,7 +47,6 @@ export const requireAdmin = (req, res, next) => {
  * Looks for a JWT token and attaches the decoded data to the request object
  */
 export const attachUser = (req, res, next) => {
-  console.log('attachUser req.cookies:', req.cookies)
   const token = req.cookies.token
   if (!token) {
     return res.status(401).json({ message: 'Authentication Invalid' })

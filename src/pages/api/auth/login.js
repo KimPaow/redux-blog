@@ -3,9 +3,10 @@ import jwtDecode from 'jwt-decode';
 import dbConnect from '../../../db/connect'
 import User from '../../../db/models/User'
 import { createToken, verifyPassword } from '../../../utils/api/auth'
-import { cookies } from '../../../utils/api/middlewares'
+import { cookies, cors, runMiddleware } from '../../../utils/api/middlewares'
 
 const handler = async (req, res) => {
+  await runMiddleware(req, res, cors)
   await dbConnect()
 
   try {

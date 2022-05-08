@@ -5,7 +5,7 @@ import userReducer from '@/redux/slices/userSlice'
 import { blogApi } from '@/redux/api/blogApi'
 import { authApi } from '@/redux/api/authApi'
 import { userApi } from '@/redux/api/userApi'
-import { Document as document, Window as window } from '@/utils/server-safe-globals'
+import { Window as window } from '@/utils/server-safe-globals'
 
 const localStorageMiddleware = ({ getState }) => {
   return next => action => {
@@ -18,8 +18,6 @@ const localStorageMiddleware = ({ getState }) => {
 };
 
 const reHydrateStore = () => {
-  // const token = window.localStorage.getItem('token')
-  // const token = document.cookie('token')
   const user = window.localStorage.getItem('userInfo')
   const expiresAt = window.localStorage.getItem('expiresAt')
 

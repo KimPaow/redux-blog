@@ -1,25 +1,21 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { setUsers } from '@/redux/slices/userSlice';
 
-// const getCsurfToken = async () => {
-//   const { data } = await 
-// }
-
 export const userApi = createApi({
   reducerPath: 'userApi',
   tagTypes: ['User'],
   baseQuery: fetchBaseQuery({
     baseUrl: `/api/users`,
-    // prepareHeaders: (headers, { getState }) => {
-    //   const token = getState().user.token
+    prepareHeaders: (headers, { getState }) => {
+      const csrfToken = getState().user?.csurf?.csrfToken
 
-    //   // If we have a token set in state, let's assume that we should be passing it.
-    //   if (token) {
-    //     headers.set('authorization', `Bearer ${token}`)
-    //   }
+      // If we have a token set in state, let's assume that we should be passing it.
+      if (csrfToken) {
+        headers.set('X-CSRF-TOKEN', csrfToken)
+      }
 
-    //   return headers
-    // },
+      return headers
+    },
   }),
   endpoints: (builder) => ({
     getAllUsers: builder.query({

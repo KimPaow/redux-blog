@@ -1,19 +1,20 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { setCsurf } from '@/redux/slices/userSlice';
 
 export const authApi = createApi({
   reducerPath: 'auth',
   baseQuery: fetchBaseQuery({
     baseUrl: '/api/auth',
-    // prepareHeaders: (headers, { getState }) => {
-    //   const token = getState().user.token
+    prepareHeaders: (headers, { getState }) => {
+      const csrfToken = getState().user?.csurf?.csrfToken
 
-    //   // If we have a token set in state, let's assume that we should be passing it.
-    //   if (token) {
-    //     headers.set('authorization', `Bearer ${token}`)
-    //   }
+      // If we have a token set in state, let's assume that we should be passing it.
+      if (csrfToken) {
+        headers.set('X-CSRF-TOKEN', csrfToken)
+      }
 
-    //   return headers
-    // },
+      return headers
+    },
   }),
   endpoints: builder => ({
     registerUser: builder.mutation({
@@ -23,15 +24,12 @@ export const authApi = createApi({
         body: payload,
         credentials: 'include',
       }),
-      // Allows us to manipulate the data before it hits the cache.
-      // transformResponse: (result) => result.data.user,
     }),
     loginUser: builder.mutation({
       query: payload => ({
         url: `/login`,
         method: 'POST',
         body: payload,
-        // You must set credentials: 'include' so that the server can send cookies (access and refresh tokens) to the user’s browser.
         credentials: 'include',
       }),
     }),
@@ -41,11 +39,29 @@ export const authApi = createApi({
         credentials: 'include',
       })
     }),
+    getCsurfToken: builder.query({
+      query() {
+        return {
+          url: '/csurf-token',
+          credentials: 'include',
+        }
+      },
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setCsurf(data));
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.error('getCsurfToken error: ', error)
+        }
+      },
+    })
   })
 })
 
 export const {
   useLoginUserMutation,
   useRegisterUserMutation,
-  useLogoutUserMutation
+  useLogoutUserMutation,
+  useGetCsurfTokenQuery
 } = authApi
