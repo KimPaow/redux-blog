@@ -59,7 +59,9 @@ const handler = async (req, res) => {
 
       res.cookie('token', token, {
         httpOnly: true,
-        path: '/'
+        path: '/',
+        sameSite: true,
+        secure: true,
       })
 
       return res.json({
