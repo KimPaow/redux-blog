@@ -13,7 +13,7 @@ import Avatar from '@/components/_common/avatar'
 import Text from "@/components/_common/text"
 import ClientOnly from '@/components/_common/client-only'
 import { styled, keyframes } from "@/theme/stitches.config"
-import { selectUserData, selectIsAdmin } from '@/redux/slices/userSlice'
+import { selectUserData } from '@/redux/slices/userSlice'
 import { useIsAuthenticated } from '@/utils/hooks/useIsAuthenticated'
 import { Stack } from '@/components/_common/flex'
 import { logout } from '@/redux/slices/userSlice'
