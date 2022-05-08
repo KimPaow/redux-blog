@@ -2,13 +2,26 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const authApi = createApi({
   reducerPath: 'auth',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api/auth' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: '/api/auth',
+    // prepareHeaders: (headers, { getState }) => {
+    //   const token = getState().user.token
+
+    //   // If we have a token set in state, let's assume that we should be passing it.
+    //   if (token) {
+    //     headers.set('authorization', `Bearer ${token}`)
+    //   }
+
+    //   return headers
+    // },
+  }),
   endpoints: builder => ({
     registerUser: builder.mutation({
       query: payload => ({
         url: `/register`,
         method: 'POST',
-        body: payload
+        body: payload,
+        credentials: 'include',
       }),
       // Allows us to manipulate the data before it hits the cache.
       // transformResponse: (result) => result.data.user,

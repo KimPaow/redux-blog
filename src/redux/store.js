@@ -5,13 +5,12 @@ import userReducer from '@/redux/slices/userSlice'
 import { blogApi } from '@/redux/api/blogApi'
 import { authApi } from '@/redux/api/authApi'
 import { userApi } from '@/redux/api/userApi'
-import { Window as window } from '@/utils/server-safe-globals'
+import { Document as document, Window as window } from '@/utils/server-safe-globals'
 
 const localStorageMiddleware = ({ getState }) => {
   return next => action => {
     const result = next(action);
     const state = getState()
-    state.user.token && window.localStorage.setItem('token', state.user.token)
     state.user.userInfo && window.localStorage.setItem('userInfo', JSON.stringify(state.user.userInfo))
     state.user.expiresAt && window.localStorage.setItem('expiresAt', state.user.expiresAt)
     return result;
@@ -19,15 +18,15 @@ const localStorageMiddleware = ({ getState }) => {
 };
 
 const reHydrateStore = () => {
-  const token = window.localStorage.getItem('token')
+  // const token = window.localStorage.getItem('token')
+  // const token = document.cookie('token')
   const user = window.localStorage.getItem('userInfo')
   const expiresAt = window.localStorage.getItem('expiresAt')
 
-  if (token && user && expiresAt) {
+  if (user && expiresAt) {
     return {
       user: {
         userInfo: (user && typeof user !== 'undefined' && user != 'undefined') ? JSON.parse(window.localStorage.getItem('userInfo')) : {},
-        token,
         expiresAt: Number(expiresAt),
       }
     };

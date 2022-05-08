@@ -33,6 +33,7 @@ const documentShim = {
   },
   querySelector: function querySelector() { },
   querySelectorAll: function querySelectorAll() { },
+  cookie: function cookie() { },
 };
 
 const performanceShim = {

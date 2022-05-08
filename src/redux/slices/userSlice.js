@@ -13,7 +13,7 @@ export const userSlice = createSlice({
   name: 'user',
   reducers: {
     logout: () => {
-      localStorage.removeItem('token')
+      // localStorage.removeItem('token')
       localStorage.removeItem('userInfo')
       localStorage.removeItem('expiresAt')
       return initialState

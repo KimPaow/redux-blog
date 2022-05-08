@@ -3,9 +3,10 @@ import jwtDecode from 'jwt-decode';
 import dbConnect from '../../../db/connect'
 import User from '../../../db/models/User'
 import { createToken, hashPassword } from '../../../utils/api/auth'
-import { cookies } from '../../../utils/api/middlewares'
+import { cookies, csurfProtection, runMiddleware } from '../../../utils/api/middlewares'
 
 const handler = async (req, res) => {
+  // await runMiddleware(req, res, csurfProtection)
   await dbConnect()
 
   try {
@@ -56,7 +57,8 @@ const handler = async (req, res) => {
       };
 
       res.cookie('token', token, {
-        httpOnly: true
+        httpOnly: true,
+        path: '/'
       })
 
       return res.json({

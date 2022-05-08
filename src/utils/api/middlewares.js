@@ -2,6 +2,7 @@ import { expressjwt } from 'express-jwt'
 import jwtDecode from 'jwt-decode'
 import Cors from 'cors'
 import { serialize } from 'cookie'
+import csurf from 'csurf'
 
 const baseUrl = process.env.NODE_ENV === 'development'
   ? 'http://localhost:3000'
@@ -18,7 +19,11 @@ export const requireAuth = expressjwt({
   secret: process.env.JWT_SECRET,
   algorithms: ["HS256"],
   issuer: 'reduxblog.bjorkman.kim',
-  audience: 'reduxblog.bjorkman.kim'
+  audience: 'reduxblog.bjorkman.kim',
+  getToken: req => {
+    console.log('requireAuth getToken req.cookies: ', req.cookies)
+    return req.cookies.token
+  }
 });
 
 /**
@@ -45,12 +50,13 @@ export const requireAdmin = (req, res, next) => {
  * Looks for a JWT token and attaches the decoded data to the request object
  */
 export const attachUser = (req, res, next) => {
-  const token = req.headers.authorization
+  console.log('attachUser req.cookies:', req.cookies)
+  const token = req.cookies.token
   if (!token) {
     return res.status(401).json({ message: 'Authentication Invalid' })
   }
 
-  const decodedToken = jwtDecode(token.slice(7))
+  const decodedToken = jwtDecode(token)
 
   if (!decodedToken) {
     return res.status(401).json({ message: 'There was a problem authorizing the request' })
@@ -83,6 +89,8 @@ export const cookies = (handler) => (req, res) => {
 
   return handler(req, res)
 }
+
+export const csurfProtection = csurf({ cookie: true })
 
 // Helper method to wait for a middleware to execute before continuing
 // And to throw an error when an error happens in a middleware

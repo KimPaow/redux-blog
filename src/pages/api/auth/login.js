@@ -37,7 +37,8 @@ const handler = async (req, res) => {
       const expiresAt = decodedToken.exp;
 
       res.cookie('token', token, {
-        httpOnly: true
+        httpOnly: true,
+        path: '/'
       })
 
       res.json({

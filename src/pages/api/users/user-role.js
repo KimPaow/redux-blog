@@ -5,6 +5,7 @@ import {
   cors,
   requireAuth,
   attachUser,
+  csurfProtection
 } from '../../../utils/api/middlewares'
 
 const handler = async (req, res) => {
@@ -13,6 +14,7 @@ const handler = async (req, res) => {
   }
 
   await runMiddleware(req, res, cors)
+  // await runMiddleware(req, res, csurfProtection)
   await runMiddleware(req, res, requireAuth)
   await runMiddleware(req, res, attachUser)
   await dbConnect()

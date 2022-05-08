@@ -5,7 +5,7 @@ import {
   cors,
   requireAuth,
   attachUser,
-  requireAdmin
+  requireAdmin,
 } from '../../../utils/api/middlewares'
 
 const handler = async (req, res) => {
