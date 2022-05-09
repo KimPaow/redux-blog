@@ -1,4 +1,5 @@
-import jwtDecode from 'jwt-decode';
+import jwtDecode from 'jwt-decode'
+import sanitize from 'mongo-sanitize'
 
 import dbConnect from '../../../db/connect'
 import User from '../../../db/models/User'
@@ -13,7 +14,7 @@ const handler = async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({
-      email
+      email: sanitize(email)
     }).lean();
 
     if (!user) {

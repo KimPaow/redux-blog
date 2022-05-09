@@ -32,6 +32,7 @@ export const AdminPage = () => {
         <Text h1>Account Page</Text>
         <Text body>This page is protected and only accessible for users that are logged in</Text>
         <Stack column gap={2} css={{ maxWidth: '500px' }}>
+          <Text body>Change the role for your user here, admins have access to an additional protected route.</Text>
           <select
             disabled={isLoading}
             defaultValue={userData?.role}

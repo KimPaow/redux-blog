@@ -13,11 +13,13 @@ export const userSlice = createSlice({
   initialState,
   name: 'user',
   reducers: {
-    logout: () => {
-      // localStorage.removeItem('token')
+    logout: (state) => {
       localStorage.removeItem('userInfo')
       localStorage.removeItem('expiresAt')
-      return initialState
+      return {
+        ...initialState,
+        csurf: state.csurf
+      }
     },
     setUser: (state, action) => {
       const { token, user, expiresAt } = action.payload || {};

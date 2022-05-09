@@ -1,5 +1,6 @@
 import dbConnect from '../../../db/connect'
 import User from '../../../db/models/User'
+import sanitize from 'mongo-sanitize'
 import {
   runMiddleware,
   cors,
@@ -30,7 +31,7 @@ const handler = async (req, res) => {
     }
     await User.findOneAndUpdate(
       { _id: req.user.sub },
-      { role }
+      { role: sanitize(role) }
     );
     res.json({
       message:

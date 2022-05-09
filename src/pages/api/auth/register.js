@@ -1,4 +1,5 @@
-import jwtDecode from 'jwt-decode';
+import jwtDecode from 'jwt-decode'
+import sanitize from 'mongo-sanitize'
 
 import dbConnect from '../../../db/connect'
 import User from '../../../db/models/User'
@@ -19,8 +20,8 @@ const handler = async (req, res) => {
 
     const userData = {
       email: email.toLowerCase(),
-      firstName,
-      lastName,
+      firstName: sanitize(firstName),
+      lastName: sanitize(lastName),
       password: hashedPassword,
       role: 'user'
     };
