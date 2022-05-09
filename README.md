@@ -41,3 +41,5 @@ From the root, follow these steps:
 
 ## Upcoming features
 - [ ] Testing
+- [ ] Refactor to TypeScript
+- [ ] Implement Storybook (or similar)
