@@ -43,3 +43,4 @@ From the root, follow these steps:
 - [ ] Testing
 - [ ] Refactor to TypeScript
 - [ ] Implement Storybook (or similar)
+- [ ] Implement Auth0
