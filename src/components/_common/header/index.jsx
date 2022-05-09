@@ -14,6 +14,7 @@ export const HeaderContainer = styled(Stack, {
   marginBottom: '$4',
   borderBottom: '1px solid $text_muted',
   alignItems: 'center',
+  flexWrap: 'wrap',
 
   '@sm': {
     marginBottom: '$5',
@@ -35,7 +36,7 @@ export const Header = () => {
   const page = Number(router?.query?.page) || 1
 
   return <HeaderContainer gap={4}>
-    <Link underline to="/">Home</Link>
+    <Link underline to="/" css={{ flex: 1 }}>Home</Link>
     <Search
       onSubmit={(event) => handleSubmitSearch({ event, page, router, dispatch })}
       css={{

@@ -8,7 +8,7 @@ export const authApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       const csrfToken = getState().user?.csurf?.csrfToken
 
-      // If we have a token set in state, let's assume that we should be passing it.
+      // Cross Site Forgery Token
       if (csrfToken) {
         headers.set('X-CSRF-TOKEN', csrfToken)
       }
